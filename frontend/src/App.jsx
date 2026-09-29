@@ -1,8 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import LandingPage from './pages/LandingPage';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import DashboardPage from './pages/DashboardPage';
 import ChatPage from './pages/ChatPage';
@@ -13,8 +11,8 @@ function App() {
     <Routes>
       {/* Public routes */}
       <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<Navigate to="/login" replace />} />
+      <Route path="/login" element={<LandingPage defaultAuthOpen={true} defaultAuthMode="login" />} />
+      <Route path="/signup" element={<LandingPage defaultAuthOpen={true} defaultAuthMode="signup" />} />
       <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
 
       {/* Protected routes */}

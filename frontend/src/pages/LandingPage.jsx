@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 import toast from 'react-hot-toast';
+import AuthModal from '../components/AuthModal';
 
 /* ─── Neural Brain Logo SVG ─────────────────────────────── */
 export function BrainLogo({ size = 28 }) {
@@ -47,13 +48,24 @@ export function BrainLogo({ size = 28 }) {
   );
 }
 
-export default function LandingPage() {
+export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode = 'login' }) {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = useState('Chat');
   const [inputVal, setInputVal] = useState('');
   const [demoModalOpen, setDemoModalOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(defaultAuthOpen);
+  const [authModalMode, setAuthModalMode] = useState(defaultAuthMode);
   const fileInputRef = useRef(null);
+
+  const openAuth = (mode = 'login') => {
+    if (user) {
+      navigate('/dashboard');
+    } else {
+      setAuthModalMode(mode);
+      setAuthModalOpen(true);
+    }
+  };
 
   // Mockup dynamic chat messages state
   const [messages, setMessages] = useState([
@@ -84,11 +96,7 @@ export default function LandingPage() {
   ]);
 
   const handleCTA = () => {
-    if (user) {
-      navigate('/dashboard');
-    } else {
-      navigate('/login');
-    }
+    openAuth('signup');
   };
 
   const handleMockupSend = () => {
@@ -294,7 +302,7 @@ export default function LandingPage() {
             </div>
           ) : (
             <button
-              onClick={() => navigate('/login')}
+              onClick={() => openAuth('login')}
               style={{
                 padding: '9px 22px',
                 borderRadius: '10px',
@@ -1338,7 +1346,7 @@ export default function LandingPage() {
             <button
               onClick={() => {
                 setDemoModalOpen(false);
-                handleCTA();
+                openAuth('signup');
               }}
               style={{
                 width: '100%',
@@ -1357,6 +1365,13 @@ export default function LandingPage() {
           </div>
         </div>
       )}
+
+      {/* ─── Auth Popup Modal ─── */}
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        initialMode={authModalMode}
+      />
 
       {/* Responsive Styles */}
       <style>{`

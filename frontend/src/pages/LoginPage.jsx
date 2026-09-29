@@ -203,13 +203,25 @@ function FieldErr({ msg }) {
 /* ═══════════════════════════════════════════════════════════
    MAIN
    ═══════════════════════════════════════════════════════════ */
-export default function LoginPage() {
+export default function LoginPage({ defaultMode = 'login' }) {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { user, login } = useAuth();
 
-  const [mode, setMode] = useState('login'); // 'login' | 'signup' | 'forgot'
+  const [mode, setMode] = useState(defaultMode); // 'login' | 'signup' | 'forgot'
   const [animCls, setAnimCls] = useState('');
   const [show, setShow] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [user, navigate]);
+
+  useEffect(() => {
+    if (defaultMode && defaultMode !== mode) {
+      setMode(defaultMode);
+    }
+  }, [defaultMode]);
 
   const [lf, setLf] = useState({ email: '', password: '' });
   const [sf, setSf] = useState({ name: '', email: '', password: '', confirmPassword: '' });
