@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Sparkles, LayoutDashboard, User, LogOut, Menu, X, Zap } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 
+import { BrainLogo } from '../pages/LandingPage';
+
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -22,7 +24,7 @@ const Navbar = () => {
     <nav
       className="sticky top-0 z-50"
       style={{
-        background: 'rgba(6,6,10,0.75)',
+        background: 'rgba(7,9,14,0.85)',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
         backdropFilter: 'blur(24px) saturate(180%)',
         WebkitBackdropFilter: 'blur(24px) saturate(180%)',
@@ -30,25 +32,23 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 h-[60px] flex items-center justify-between gap-4">
         {/* ── Logo ── */}
-        <Link to="/dashboard" className="flex items-center gap-2.5 group flex-shrink-0">
-          <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105"
-            style={{
-              background: 'linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)',
-              boxShadow: '0 0 16px rgba(124,58,237,0.4), inset 0 1px 0 rgba(255,255,255,0.15)',
-            }}
-          >
-            <Sparkles size={17} className="text-white" />
-          </div>
-          <div className="flex flex-col">
+        <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
+          <BrainLogo size={28} />
+          <div className="flex items-center">
             <span
-              className="text-[15px] font-bold leading-none tracking-tight"
-              style={{ color: 'white' }}
+              className="text-[17px] font-extrabold leading-none tracking-tight text-white"
             >
-              DocMind<span style={{ color: '#a78bfa' }}>AI</span>
+              DocMind
             </span>
-            <span className="text-[9px] text-zinc-500 font-medium tracking-widest uppercase leading-none mt-0.5">
-              by Vikash
+            <span
+              className="text-[17px] font-extrabold leading-none tracking-tight ml-1"
+              style={{
+                background: 'linear-gradient(135deg, #60a5fa, #a855f7)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              AI
             </span>
           </div>
         </Link>
