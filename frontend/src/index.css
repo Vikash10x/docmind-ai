@@ -4,6 +4,87 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── SINGLE ROOT SCROLLBAR (EXACT MATCH TO REFERENCE IMAGE) ─── */
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-color: #e2e8f0 #252830;
+  scrollbar-width: auto;
+}
+
+body {
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+}
+
+/* Root Viewport Scrollbar */
+html::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+html::-webkit-scrollbar-track {
+  background: #252830;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 9999px;
+  border: 3px solid #252830;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+
+html::-webkit-scrollbar-thumb:active {
+  background: #cbd5e1;
+}
+
+/* Up Arrow Button */
+html::-webkit-scrollbar-button:single-button:vertical:decrement {
+  height: 16px;
+  width: 14px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 8px 8px;
+  background-color: #252830;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'%3E%3Cpath d='M12 6l-7 7h14z'/%3E%3C/svg%3E");
+}
+
+/* Down Arrow Button */
+html::-webkit-scrollbar-button:single-button:vertical:increment {
+  height: 16px;
+  width: 14px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 8px 8px;
+  background-color: #252830;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'%3E%3Cpath d='M12 18l7-7H5z'/%3E%3C/svg%3E");
+}
+
+html::-webkit-scrollbar-button:single-button:vertical:decrement:hover,
+html::-webkit-scrollbar-button:single-button:vertical:increment:hover {
+  background-color: #2e323c;
+}
+
+/* ─── ELIMINATE DUPLICATE/INNER SCROLLBARS (PREVENTS DUAL SCROLLBARS) ─── */
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar,
+div:not(.custom-scrollbar)::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+}
+
+body,
+#root,
+div:not(.custom-scrollbar) {
+  -ms-overflow-style: none;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -16,11 +97,37 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Premium Scrollbar */
-  ::-webkit-scrollbar { width: 5px; height: 5px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { @apply bg-white/10 rounded-full; }
-  ::-webkit-scrollbar-thumb:hover { @apply bg-white/20; }
+  /* Utility for explicit subtle scrollbar on inner widgets when requested */
+  .custom-scrollbar {
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent !important;
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    display: block !important;
+    width: 4px !important;
+    height: 4px !important;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 9999px !important;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  /* Utility to completely hide scrollbar */
+  .no-scrollbar {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
 
   ::selection {
     background: rgba(139, 92, 246, 0.35);

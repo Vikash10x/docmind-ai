@@ -4,7 +4,8 @@ import {
   Sparkles, ArrowRight, Play, Zap, MessageSquare, Shield,
   FileText, UploadCloud, ChevronDown, Check, Clock, Settings,
   X, Send, Bot, User, MoreVertical, Lock, Cpu, Volume2, Mic,
-  Layers, CheckCircle2, Star, Github, Globe, CornerDownLeft
+  Layers, CheckCircle2, Star, Github, Globe, CornerDownLeft,
+  LayoutDashboard, LogOut, Menu, HelpCircle, FolderOpen, ExternalLink
 } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 import toast from 'react-hot-toast';
@@ -56,7 +57,20 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
   const [demoModalOpen, setDemoModalOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(defaultAuthOpen);
   const [authModalMode, setAuthModalMode] = useState(defaultAuthMode);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const fileInputRef = useRef(null);
+  const userDropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (userDropdownRef.current && !userDropdownRef.current.contains(e.target)) {
+        setUserDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   useEffect(() => {
     if (defaultAuthOpen) {
@@ -78,7 +92,14 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
     } else {
       setAuthModalMode(mode);
       setAuthModalOpen(true);
+      setMobileMenuOpen(false);
     }
+  };
+
+  const handleUserLogout = () => {
+    logout();
+    setUserDropdownOpen(false);
+    toast.success('Signed out successfully');
   };
 
   // Mockup dynamic chat messages state
@@ -179,7 +200,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
       color: '#f8fafc',
       fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       position: 'relative',
-      overflowX: 'hidden',
+      overflow: 'visible',
     }}>
 
       <input
@@ -204,14 +225,14 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
       }} />
 
       {/* ═══════════════════════════════════════════════════════════
-          NAVBAR (EXACT IMAGE REPLICA)
+          NAVBAR (COMPREHENSIVE PROFESSIONAL SAAS HEADER)
           ═══════════════════════════════════════════════════════════ */}
       <header style={{
         position: 'relative',
-        zIndex: 20,
+        zIndex: 40,
         maxWidth: '1440px',
         margin: '0 auto',
-        padding: '24px 48px',
+        padding: '20px 48px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -252,55 +273,19 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
           </div>
         </div>
 
-        {/* Center Nav Links */}
-        <nav style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '36px',
-        }} className="landing-nav-links">
-          <div
-            onClick={() => scrollToSection('features')}
-            style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'rgba(255,255,255,0.75)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', transition: 'color .2s' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#ffffff'}
-            onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.75)'}
-          >
-            Product <ChevronDown size={14} style={{ marginTop: '1px' }} />
-          </div>
-          <div
-            onClick={() => scrollToSection('features')}
-            style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', transition: 'color .2s' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#ffffff'}
-            onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.75)'}
-          >
-            Features
-          </div>
-          <div
-            onClick={() => scrollToSection('security')}
-            style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', transition: 'color .2s' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#ffffff'}
-            onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.75)'}
-          >
-            Security
-          </div>
-          <div
-            onClick={() => scrollToSection('pricing')}
-            style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', transition: 'color .2s' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#ffffff'}
-            onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.75)'}
-          >
-            Pricing
-          </div>
-        </nav>
-
-        {/* Right Auth Action */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+        {/* Right Auth Action (Dual Sign In + Get Started or User Menu) */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           {user ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', position: 'relative' }}>
+              {/* Dashboard Shortcut Button */}
               <button
                 onClick={() => navigate('/dashboard')}
                 style={{
-                  padding: '9px 20px',
-                  borderRadius: '10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '7px',
+                  padding: '9px 18px',
+                  borderRadius: '11px',
                   background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
                   border: 'none',
                   color: '#ffffff',
@@ -310,38 +295,283 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   transition: 'all .2s ease',
                   boxShadow: '0 4px 14px rgba(99,102,241,0.4)',
                 }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
               >
+                <LayoutDashboard size={14} />
                 Dashboard
               </button>
+
+              {/* User Avatar Menu Anchor */}
+              <div ref={userDropdownRef} style={{ position: 'relative' }}>
+                <div
+                  onClick={() => setUserDropdownOpen(prev => !prev)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '5px 10px 5px 6px',
+                    borderRadius: '999px',
+                    background: 'rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    cursor: 'pointer',
+                    transition: 'all .2s',
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(99,102,241,0.5)'}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'}
+                >
+                  <div style={{
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #818cf8, #c084fc)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontWeight: 700,
+                    fontSize: '12px',
+                    color: 'white',
+                  }}>
+                    {user?.name ? user.name[0].toUpperCase() : 'U'}
+                  </div>
+                  <span style={{ fontSize: '13px', fontWeight: 600, color: 'white', maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} className="hidden sm:inline">
+                    {user?.name?.split(' ')[0] || 'Account'}
+                  </span>
+                  <ChevronDown size={13} color="rgba(255,255,255,0.6)" />
+                </div>
+
+                {/* User Floating Profile Menu */}
+                {userDropdownOpen && (
+                  <div style={{
+                    position: 'absolute',
+                    top: 'calc(100% + 8px)',
+                    right: '0',
+                    width: '230px',
+                    borderRadius: '16px',
+                    background: '#0d111a',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    padding: '8px',
+                    boxShadow: '0 20px 45px rgba(0,0,0,0.8)',
+                    backdropFilter: 'blur(20px)',
+                    zIndex: 50,
+                  }}>
+                    <div style={{ padding: '8px 12px 10px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+                      <div style={{ fontSize: '13px', fontWeight: 700, color: 'white' }}>{user.name}</div>
+                      <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.45)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {user.email}
+                      </div>
+                    </div>
+
+                    <div style={{ padding: '6px 0' }}>
+                      <div
+                        onClick={() => { setUserDropdownOpen(false); navigate('/dashboard'); }}
+                        style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', borderRadius: '8px', fontSize: '13px', color: 'rgba(255,255,255,0.8)', cursor: 'pointer', transition: 'background .15s' }}
+                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
+                        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                      >
+                        <LayoutDashboard size={14} color="#818cf8" />
+                        My Documents
+                      </div>
+                      <div
+                        onClick={() => { setUserDropdownOpen(false); navigate('/profile'); }}
+                        style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', borderRadius: '8px', fontSize: '13px', color: 'rgba(255,255,255,0.8)', cursor: 'pointer', transition: 'background .15s' }}
+                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
+                        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                      >
+                        <Settings size={14} color="#38bdf8" />
+                        Account Settings
+                      </div>
+                    </div>
+
+                    <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: '4px' }}>
+                      <div
+                        onClick={handleUserLogout}
+                        style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', borderRadius: '8px', fontSize: '13px', color: '#f87171', cursor: 'pointer', transition: 'background .15s' }}
+                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(239,68,68,0.1)'}
+                        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                      >
+                        <LogOut size={14} />
+                        Sign Out
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           ) : (
-            <button
-              onClick={() => openAuth('login')}
-              style={{
-                padding: '9px 22px',
-                borderRadius: '10px',
-                background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(255,255,255,0.18)',
-                color: '#ffffff',
-                fontSize: '13.5px',
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'all .2s ease',
-                backdropFilter: 'blur(10px)',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.09)';
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.18)';
-              }}
-            >
-              Sign In
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              {/* Secondary Sign In Button */}
+              <button
+                onClick={() => openAuth('login')}
+                style={{
+                  padding: '9px 18px',
+                  borderRadius: '10px',
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(255,255,255,0.16)',
+                  color: '#ffffff',
+                  fontSize: '13.5px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all .2s ease',
+                  backdropFilter: 'blur(10px)',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.09)';
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.16)';
+                }}
+              >
+                Sign In
+              </button>
+
+              {/* Primary Get Started Button */}
+              <button
+                onClick={() => openAuth('signup')}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '9px 18px',
+                  borderRadius: '10px',
+                  background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                  border: 'none',
+                  color: '#ffffff',
+                  fontSize: '13.5px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all .2s ease',
+                  boxShadow: '0 4px 14px rgba(99,102,241,0.35)',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                  e.currentTarget.style.boxShadow = '0 6px 18px rgba(99,102,241,0.5)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(99,102,241,0.35)';
+                }}
+              >
+                Get Started
+                <ArrowRight size={13} />
+              </button>
+            </div>
           )}
+
+          {/* Mobile Hamburger Toggle Button */}
+          <button
+            onClick={() => setMobileMenuOpen(prev => !prev)}
+            className="md:hidden"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '36px',
+              height: '36px',
+              borderRadius: '8px',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              color: 'white',
+              cursor: 'pointer',
+              marginLeft: '4px',
+            }}
+          >
+            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        {mobileMenuOpen && (
+          <div style={{
+            position: 'absolute',
+            top: '100%',
+            left: '24px',
+            right: '24px',
+            borderRadius: '18px',
+            background: '#0c0f18',
+            border: '1px solid rgba(255,255,255,0.12)',
+            padding: '20px',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.8)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '14px',
+            zIndex: 50,
+          }}>
+            <div
+              onClick={() => { setMobileMenuOpen(false); scrollToSection('features'); }}
+              style={{ fontSize: '15px', fontWeight: 600, color: 'white', cursor: 'pointer', padding: '8px 0' }}
+            >
+              Features
+            </div>
+            <div
+              onClick={() => { setMobileMenuOpen(false); scrollToSection('security'); }}
+              style={{ fontSize: '15px', fontWeight: 600, color: 'white', cursor: 'pointer', padding: '8px 0' }}
+            >
+              Security
+            </div>
+            <div
+              onClick={() => { setMobileMenuOpen(false); scrollToSection('pricing'); }}
+              style={{ fontSize: '15px', fontWeight: 600, color: 'white', cursor: 'pointer', padding: '8px 0' }}
+            >
+              Pricing
+            </div>
+
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {user ? (
+                <button
+                  onClick={() => { setMobileMenuOpen(false); navigate('/dashboard'); }}
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    borderRadius: '10px',
+                    background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                    border: 'none',
+                    color: 'white',
+                    fontWeight: 700,
+                    fontSize: '14px',
+                  }}
+                >
+                  Go to Dashboard
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={() => openAuth('login')}
+                    style={{
+                      width: '100%',
+                      padding: '11px',
+                      borderRadius: '10px',
+                      background: 'rgba(255,255,255,0.06)',
+                      border: '1px solid rgba(255,255,255,0.15)',
+                      color: 'white',
+                      fontWeight: 600,
+                      fontSize: '14px',
+                    }}
+                  >
+                    Sign In
+                  </button>
+                  <button
+                    onClick={() => openAuth('signup')}
+                    style={{
+                      width: '100%',
+                      padding: '11px',
+                      borderRadius: '10px',
+                      background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                      border: 'none',
+                      color: 'white',
+                      fontWeight: 700,
+                      fontSize: '14px',
+                    }}
+                  >
+                    Get Started Free
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        )}
       </header>
 
       {/* ═══════════════════════════════════════════════════════════
@@ -817,14 +1047,17 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   </div>
 
                   {/* Messages Feed */}
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '12px',
-                    padding: '12px 0',
-                    maxHeight: '340px',
-                    overflowY: 'auto',
-                  }}>
+                  <div
+                    className="no-scrollbar"
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '12px',
+                      padding: '12px 0',
+                      maxHeight: '340px',
+                      overflowY: 'auto',
+                    }}
+                  >
                     {messages.map((m) => (
                       m.sender === 'user' ? (
                         <div key={m.id} style={{ alignSelf: 'flex-end', maxWidth: '85%' }}>
