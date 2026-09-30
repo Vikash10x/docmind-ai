@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Sparkles, ArrowRight, Play, Zap, MessageSquare, Shield,
@@ -57,6 +57,20 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
   const [authModalOpen, setAuthModalOpen] = useState(defaultAuthOpen);
   const [authModalMode, setAuthModalMode] = useState(defaultAuthMode);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    if (defaultAuthOpen) {
+      setAuthModalOpen(true);
+      setAuthModalMode(defaultAuthMode);
+    }
+  }, [defaultAuthOpen, defaultAuthMode]);
+
+  const handleCloseAuth = () => {
+    setAuthModalOpen(false);
+    if (window.location.pathname === '/login' || window.location.pathname === '/signup') {
+      navigate('/', { replace: true });
+    }
+  };
 
   const openAuth = (mode = 'login') => {
     if (user) {
@@ -1369,7 +1383,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
       {/* ─── Auth Popup Modal ─── */}
       <AuthModal
         isOpen={authModalOpen}
-        onClose={() => setAuthModalOpen(false)}
+        onClose={handleCloseAuth}
         initialMode={authModalMode}
       />
 

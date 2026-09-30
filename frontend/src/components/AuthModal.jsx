@@ -70,8 +70,6 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
     setSuccF('');
   }, [initialMode, isOpen]);
 
-  if (!isOpen) return null;
-
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!lf.email || !lf.password) { setErrL('Please fill in all fields.'); return; }
@@ -224,6 +222,8 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  if (!isOpen) return null;
+
   return (
     <div
       onClick={onClose}
@@ -261,31 +261,6 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
           padding: '28px 28px 24px',
           position: 'relative',
         }}>
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            style={{
-              position: 'absolute',
-              top: '18px',
-              right: '18px',
-              width: '32px',
-              height: '32px',
-              borderRadius: '50%',
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              color: 'rgba(255,255,255,0.7)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all .2s',
-            }}
-            onMouseEnter={e => e.currentTarget.style.color = 'white'}
-            onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}
-          >
-            <X size={16} />
-          </button>
-
           {/* Mode switch tabs */}
           {mode !== 'forgot' ? (
             <div style={{ display: 'flex', borderRadius: '13px', padding: '4px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', marginBottom: '22px' }}>

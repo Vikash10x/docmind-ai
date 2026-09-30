@@ -120,7 +120,7 @@ const forgotPassword = async (req, res) => {
     const rawToken = user.getResetPasswordToken();
     await user.save({ validateBeforeSave: false });
 
-    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:5174'}/reset-password/${rawToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/reset-password/${rawToken}`;
 
     try {
       await sendPasswordResetEmail(user.email, user.name, resetUrl);
