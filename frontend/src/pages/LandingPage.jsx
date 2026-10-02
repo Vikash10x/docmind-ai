@@ -190,12 +190,12 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
   return (
     <div style={{
       minHeight: '100vh',
-      backgroundColor: '#07090e',
+      backgroundColor: '#08090d',
       backgroundImage: `
-        radial-gradient(ellipse 60% 40% at 20% -10%, rgba(99,102,241,0.15), transparent 70%),
-        radial-gradient(ellipse 50% 35% at 85% 30%, rgba(56,189,248,0.08), transparent 60%),
-        radial-gradient(ellipse 60% 50% at 5% 95%, rgba(67,56,202,0.22), transparent 70%),
-        linear-gradient(180deg, #07090e 0%, #080b12 50%, #06080d 100%)
+        radial-gradient(ellipse 70% 45% at 50% -5%, rgba(56,189,248,0.08), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 15% 20%, rgba(99,102,241,0.07), transparent 65%),
+        radial-gradient(ellipse 50% 40% at 85% 60%, rgba(59,130,246,0.06), transparent 60%),
+        linear-gradient(180deg, #08090d 0%, #0b0d14 50%, #08090d 100%)
       `,
       color: '#f8fafc',
       fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -214,12 +214,12 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
       {/* ─── Ambient Bottom Left Glow Curve ──────────────────────── */}
       <div style={{
         position: 'absolute',
-        bottom: '-10%',
-        left: '-10%',
-        width: '55%',
-        height: '45%',
-        background: 'radial-gradient(ellipse, rgba(79,70,229,0.25) 0%, rgba(30,27,75,0.4) 45%, transparent 70%)',
-        filter: 'blur(90px)',
+        bottom: '-5%',
+        left: '-5%',
+        width: '50%',
+        height: '40%',
+        background: 'radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, rgba(15,23,42,0.3) 50%, transparent 70%)',
+        filter: 'blur(100px)',
         pointerEvents: 'none',
         zIndex: 0,
       }} />
@@ -598,20 +598,22 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
+              gap: '6px',
               width: 'fit-content',
               padding: '6px 14px',
               borderRadius: '999px',
-              background: 'rgba(99,102,241,0.12)',
-              border: '1px solid rgba(99,102,241,0.3)',
-              color: '#a5b4fc',
+              background: 'rgba(56,189,248,0.06)',
+              border: '1px solid rgba(56,189,248,0.2)',
+              color: '#38bdf8',
               fontSize: '11px',
               fontWeight: 700,
               letterSpacing: '1px',
               textTransform: 'uppercase',
               marginBottom: '28px',
-              boxShadow: '0 0 16px rgba(99,102,241,0.15)',
+              boxShadow: '0 0 16px rgba(56,189,248,0.08)',
+              backdropFilter: 'blur(8px)',
             }}>
-              AI PDF CHAT
+              <Sparkles size={12} color="#38bdf8" /> AI PDF CHAT
             </div>
 
             {/* Main Headline */}
@@ -625,7 +627,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               <span style={{ color: '#ffffff', display: 'block' }}>Chat with</span>
               <span style={{
                 display: 'inline-block',
-                background: 'linear-gradient(135deg, #c084fc 0%, #a855f7 35%, #38bdf8 85%, #60a5fa 100%)',
+                background: 'linear-gradient(135deg, #f8fafc 0%, #cbd5e1 45%, #60a5fa 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}>
@@ -637,12 +639,12 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
             <p style={{
               fontSize: '16.5px',
               lineHeight: 1.65,
-              color: 'rgba(255,255,255,0.62)',
+              color: '#94a3b8',
               maxWidth: '480px',
               margin: '0 0 36px 0',
               fontWeight: 400,
             }}>
-              Upload your PDFs and ask questions. DocMind AI reads your documents and gives you accurate, context-aware <span style={{ color: '#e2e8f0', fontWeight: 600 }}>answers</span> — instantly.
+              Upload your PDFs and ask questions. DocMind AI reads your documents and gives you accurate, context-aware <span style={{ color: '#f8fafc', fontWeight: 600 }}>answers</span> — instantly.
             </p>
 
             {/* CTA Buttons */}
@@ -661,22 +663,22 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   gap: '8px',
                   padding: '14px 28px',
                   borderRadius: '13px',
-                  background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
+                  background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
                   color: '#ffffff',
                   fontSize: '15px',
                   fontWeight: 700,
                   border: 'none',
                   cursor: 'pointer',
-                  boxShadow: '0 8px 24px rgba(79,70,229,0.45), inset 0 1px 0 rgba(255,255,255,0.2)',
+                  boxShadow: '0 8px 24px rgba(37,99,235,0.35), inset 0 1px 0 rgba(255,255,255,0.25)',
                   transition: 'all .25s ease',
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(79,70,229,0.6), inset 0 1px 0 rgba(255,255,255,0.25)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(37,99,235,0.5), inset 0 1px 0 rgba(255,255,255,0.3)';
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(79,70,229,0.45), inset 0 1px 0 rgba(255,255,255,0.2)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(37,99,235,0.35), inset 0 1px 0 rgba(255,255,255,0.25)';
                 }}
               >
                 Get Started Free <ArrowRight size={17} />
@@ -691,7 +693,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   padding: '13px 24px',
                   borderRadius: '13px',
                   background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.15)',
+                  border: '1px solid rgba(255,255,255,0.12)',
                   color: '#ffffff',
                   fontSize: '14.5px',
                   fontWeight: 600,
@@ -705,7 +707,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
                 }}
               >
                 <div style={{
@@ -733,10 +735,10 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               {/* Feature 1 */}
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                  <Zap size={16} color="#818cf8" />
-                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#f1f5f9' }}>Upload PDFs</span>
+                  <Zap size={16} color="#38bdf8" />
+                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#f8fafc' }}>Upload PDFs</span>
                 </div>
-                <p style={{ margin: 0, fontSize: '12px', color: 'rgba(255,255,255,0.45)', lineHeight: 1.45 }}>
+                <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8', lineHeight: 1.45 }}>
                   Support for multiple file types and sizes
                 </p>
               </div>
@@ -744,10 +746,10 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               {/* Feature 2 */}
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                  <MessageSquare size={16} color="#818cf8" />
-                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#f1f5f9' }}>Ask Anything</span>
+                  <MessageSquare size={16} color="#38bdf8" />
+                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#f8fafc' }}>Ask Anything</span>
                 </div>
-                <p style={{ margin: 0, fontSize: '12px', color: 'rgba(255,255,255,0.45)', lineHeight: 1.45 }}>
+                <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8', lineHeight: 1.45 }}>
                   Get accurate answers from your documents
                 </p>
               </div>
@@ -755,10 +757,10 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               {/* Feature 3 */}
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                  <Shield size={16} color="#818cf8" />
-                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#f1f5f9' }}>Your Data Stays Private</span>
+                  <Shield size={16} color="#38bdf8" />
+                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#f8fafc' }}>Your Data Stays Private</span>
                 </div>
-                <p style={{ margin: 0, fontSize: '12px', color: 'rgba(255,255,255,0.45)', lineHeight: 1.45 }}>
+                <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8', lineHeight: 1.45 }}>
                   Secure & encrypted at every step
                 </p>
               </div>
@@ -771,13 +773,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
             position: 'relative',
             borderRadius: '24px',
             padding: '1px',
-            background: 'linear-gradient(135deg, rgba(99,102,241,0.4), rgba(56,189,248,0.2), rgba(255,255,255,0.06))',
-            boxShadow: '0 24px 60px rgba(0,0,0,0.65), 0 0 50px rgba(99,102,241,0.15)',
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(56,189,248,0.15) 50%, rgba(255,255,255,0.04) 100%)',
+            boxShadow: '0 24px 60px rgba(0,0,0,0.7), 0 0 40px rgba(37,99,235,0.1)',
           }}>
             <div style={{
               borderRadius: '23px',
-              backgroundColor: '#0a0d16',
-              border: '1px solid rgba(255,255,255,0.06)',
+              backgroundColor: '#0c0f17',
+              border: '1px solid rgba(255,255,255,0.07)',
               overflow: 'hidden',
               display: 'flex',
               flexDirection: 'column',
@@ -790,10 +792,11 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
+                background: '#090c13',
               }}>
                 <BrainLogo size={22} />
                 <span style={{ fontSize: '14px', fontWeight: 800, color: '#ffffff' }}>DocMind</span>
-                <span style={{ fontSize: '14px', fontWeight: 800, color: '#818cf8', marginLeft: '-6px' }}>AI</span>
+                <span style={{ fontSize: '14px', fontWeight: 800, color: '#38bdf8', marginLeft: '-6px' }}>AI</span>
               </div>
 
               {/* Mockup 3-Pane Body */}
@@ -801,7 +804,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 display: 'grid',
                 gridTemplateColumns: '110px 220px 1fr',
                 minHeight: '490px',
-                backgroundColor: '#080a10',
+                backgroundColor: '#080a11',
               }} className="mockup-grid">
 
                 {/* 1. Left Mini Sidebar */}
@@ -811,6 +814,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '6px',
+                  backgroundColor: '#090c14',
                 }}>
                   {[
                     { name: 'Chat', icon: MessageSquare },
@@ -837,12 +841,12 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                           fontSize: '11.5px',
                           fontWeight: active ? 700 : 500,
                           color: active ? '#ffffff' : 'rgba(255,255,255,0.4)',
-                          background: active ? 'rgba(99,102,241,0.22)' : 'transparent',
+                          background: active ? 'rgba(37,99,235,0.18)' : 'transparent',
                           cursor: 'pointer',
                           transition: 'all .15s ease',
                         }}
                       >
-                        <Icon size={13} color={active ? '#818cf8' : 'currentColor'} />
+                        <Icon size={13} color={active ? '#60a5fa' : 'currentColor'} />
                         {name}
                       </div>
                     );
@@ -856,7 +860,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '12px',
-                  backgroundColor: '#07090e',
+                  backgroundColor: '#0a0d16',
                 }}>
                   {/* Top Selected File Pill */}
                   <div
@@ -910,8 +914,8 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                       transition: 'all .2s',
                     }}
                     onMouseEnter={e => {
-                      e.currentTarget.style.borderColor = 'rgba(99,102,241,0.5)';
-                      e.currentTarget.style.background = 'rgba(99,102,241,0.04)';
+                      e.currentTarget.style.borderColor = 'rgba(56,189,248,0.4)';
+                      e.currentTarget.style.background = 'rgba(56,189,248,0.03)';
                     }}
                     onMouseLeave={e => {
                       e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
@@ -1022,7 +1026,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  backgroundColor: '#090c14',
+                  backgroundColor: '#0b0e17',
                 }}>
                   {/* Chat Top Bar */}
                   <div style={{
@@ -1033,8 +1037,8 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                     borderBottom: '1px solid rgba(255,255,255,0.05)',
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <div style={{ width: '18px', height: '18px', borderRadius: '50%', background: 'rgba(99,102,241,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <MessageSquare size={10} color="#818cf8" />
+                      <div style={{ width: '18px', height: '18px', borderRadius: '50%', background: 'rgba(56,189,248,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <MessageSquare size={10} color="#38bdf8" />
                       </div>
                       <span style={{ fontSize: '12px', fontWeight: 700, color: '#ffffff' }}>Chat with your document</span>
                     </div>
@@ -1064,7 +1068,8 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                           <div style={{
                             padding: '8px 12px',
                             borderRadius: '12px 12px 2px 12px',
-                            background: 'linear-gradient(135deg, #4f46e5, #4338ca)',
+                            background: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+                            boxShadow: '0 2px 8px rgba(37,99,235,0.25)',
                             color: 'white',
                             fontSize: '11px',
                             fontWeight: 500,
@@ -1075,14 +1080,14 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                         </div>
                       ) : (
                         <div key={m.id} style={{ alignSelf: 'flex-start', maxWidth: '92%', display: 'flex', gap: '8px' }}>
-                          <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(99,102,241,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                            <Bot size={11} color="#818cf8" />
+                          <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(56,189,248,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                            <Bot size={11} color="#38bdf8" />
                           </div>
                           <div>
                             <div style={{
                               padding: '9px 12px',
                               borderRadius: '2px 12px 12px 12px',
-                              background: 'rgba(255,255,255,0.04)',
+                              background: 'rgba(255,255,255,0.035)',
                               border: '1px solid rgba(255,255,255,0.06)',
                               color: '#e2e8f0',
                               fontSize: '10.5px',
@@ -1133,7 +1138,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                           width: '24px',
                           height: '24px',
                           borderRadius: '6px',
-                          background: '#4f46e5',
+                          background: '#2563eb',
                           border: 'none',
                           color: 'white',
                           display: 'flex',
@@ -1178,9 +1183,9 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
             gap: '6px',
             padding: '5px 12px',
             borderRadius: '999px',
-            background: 'rgba(99,102,241,0.1)',
-            border: '1px solid rgba(99,102,241,0.25)',
-            color: '#a5b4fc',
+            background: 'rgba(56,189,248,0.08)',
+            border: '1px solid rgba(56,189,248,0.25)',
+            color: '#38bdf8',
             fontSize: '11px',
             fontWeight: 700,
             letterSpacing: '0.8px',
@@ -1192,7 +1197,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
           <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 42px)', fontWeight: 800, letterSpacing: '-1px', color: 'white', margin: '0 0 16px' }}>
             Everything you need to talk to your documents
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: 0 }}>
+          <p style={{ fontSize: '15px', color: '#94a3b8', lineHeight: 1.6, margin: 0 }}>
             Powered by Google Gemini 1.5 Flash and high-dimensional semantic text embeddings.
           </p>
         </div>
@@ -1207,19 +1212,19 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               icon: Cpu,
               title: 'Gemini Vector RAG',
               desc: 'Chunks your PDFs into vector representations with cosine similarity search for exact match retrieval.',
-              color: '#818cf8',
+              color: '#38bdf8',
             },
             {
               icon: Mic,
               title: 'Voice Input & Audio TTS',
               desc: 'Speak naturally to your documents and listen to AI answers in audio mode with text-to-speech.',
-              color: '#38bdf8',
+              color: '#60a5fa',
             },
             {
               icon: FileText,
               title: 'Page & Source Citations',
               desc: 'Every AI answer is verified with exact page numbers and matched chunk citations from your PDF.',
-              color: '#c084fc',
+              color: '#a78bfa',
             },
             {
               icon: Shield,
@@ -1251,7 +1256,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-                e.currentTarget.style.borderColor = 'rgba(99,102,241,0.3)';
+                e.currentTarget.style.borderColor = 'rgba(56,189,248,0.3)';
                 e.currentTarget.style.transform = 'translateY(-3px)';
               }}
               onMouseLeave={e => {
@@ -1274,7 +1279,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 <Icon size={20} color={color} />
               </div>
               <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'white', margin: '0 0 10px' }}>{title}</h3>
-              <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.6, margin: 0 }}>{desc}</p>
+              <p style={{ fontSize: '14px', color: '#94a3b8', lineHeight: 1.6, margin: 0 }}>{desc}</p>
             </div>
           ))}
         </div>
@@ -1293,21 +1298,21 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
         <div style={{
           padding: '40px',
           borderRadius: '24px',
-          background: 'linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(6,182,212,0.04) 100%)',
-          border: '1px solid rgba(99,102,241,0.2)',
+          background: 'linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(56,189,248,0.04) 100%)',
+          border: '1px solid rgba(56,189,248,0.2)',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '32px',
           alignItems: 'center',
         }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#818cf8', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#38bdf8', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>
               <Shield size={16} /> Privacy-First Architecture
             </div>
             <h2 style={{ fontSize: '28px', fontWeight: 800, color: 'white', margin: '0 0 14px' }}>
               Your documents stay private, encrypted & secure
             </h2>
-            <p style={{ fontSize: '14.5px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: '0 0 24px' }}>
+            <p style={{ fontSize: '14.5px', color: '#94a3b8', lineHeight: 1.6, margin: '0 0 24px' }}>
               We never train public AI models on your private documents. All embeddings and chats belong solely to your user account.
             </p>
             <button
@@ -1315,12 +1320,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               style={{
                 padding: '12px 24px',
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                background: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
                 border: 'none',
                 color: 'white',
                 fontSize: '14px',
                 fontWeight: 700,
                 cursor: 'pointer',
+                boxShadow: '0 4px 16px rgba(37,99,235,0.3)',
               }}
             >
               Start Chatting Securely →
@@ -1357,7 +1363,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
           <h2 style={{ fontSize: '32px', fontWeight: 800, color: 'white', margin: '0 0 12px' }}>
             Simple, Transparent Pricing
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: 0 }}>
+          <p style={{ fontSize: '15px', color: '#94a3b8', margin: 0 }}>
             Start chatting with your PDFs right away. No hidden fees.
           </p>
         </div>
@@ -1381,13 +1387,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
           }}>
             <div>
               <div style={{ fontSize: '18px', fontWeight: 700, color: 'white', marginBottom: '6px' }}>Free Plan</div>
-              <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', marginBottom: '20px' }}>Perfect for students & individuals</div>
-              <div style={{ fontSize: '38px', fontWeight: 900, color: 'white', marginBottom: '24px' }}>$0 <span style={{ fontSize: '14px', fontWeight: 500, color: 'rgba(255,255,255,0.4)' }}>/ forever</span></div>
+              <div style={{ fontSize: '13px', color: '#94a3b8', marginBottom: '20px' }}>Perfect for students & individuals</div>
+              <div style={{ fontSize: '38px', fontWeight: 900, color: 'white', marginBottom: '24px' }}>$0 <span style={{ fontSize: '14px', fontWeight: 500, color: '#94a3b8' }}>/ forever</span></div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
                 {['Unlimited document chats', '10MB PDF upload limit', 'Google Gemini 1.5 Flash responses', 'Voice input & Text-to-Speech', 'Exact page citations'].map(t => (
-                  <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px', color: 'rgba(255,255,255,0.75)' }}>
-                    <Check size={16} color="#818cf8" /> {t}
+                  <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px', color: 'rgba(255,255,255,0.85)' }}>
+                    <Check size={16} color="#38bdf8" /> {t}
                   </div>
                 ))}
               </div>
@@ -1415,9 +1421,9 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
           <div style={{
             padding: '36px',
             borderRadius: '20px',
-            background: 'linear-gradient(135deg, rgba(99,102,241,0.12) 0%, rgba(168,85,247,0.08) 100%)',
-            border: '1.5px solid rgba(99,102,241,0.45)',
-            boxShadow: '0 12px 36px rgba(99,102,241,0.2)',
+            background: 'linear-gradient(135deg, rgba(37,99,235,0.12) 0%, rgba(56,189,248,0.06) 100%)',
+            border: '1.5px solid rgba(56,189,248,0.4)',
+            boxShadow: '0 12px 36px rgba(37,99,235,0.2)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -1429,7 +1435,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               right: '20px',
               padding: '4px 10px',
               borderRadius: '999px',
-              background: '#4f46e5',
+              background: '#2563eb',
               color: 'white',
               fontSize: '10px',
               fontWeight: 800,
@@ -1440,8 +1446,8 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
 
             <div>
               <div style={{ fontSize: '18px', fontWeight: 700, color: 'white', marginBottom: '6px' }}>Pro AI</div>
-              <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', marginBottom: '20px' }}>For researchers & power users</div>
-              <div style={{ fontSize: '38px', fontWeight: 900, color: 'white', marginBottom: '24px' }}>Free <span style={{ fontSize: '14px', fontWeight: 500, color: 'rgba(255,255,255,0.4)' }}>during Public Beta</span></div>
+              <div style={{ fontSize: '13px', color: '#94a3b8', marginBottom: '20px' }}>For researchers & power users</div>
+              <div style={{ fontSize: '38px', fontWeight: 900, color: 'white', marginBottom: '24px' }}>Free <span style={{ fontSize: '14px', fontWeight: 500, color: '#94a3b8' }}>during Public Beta</span></div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
                 {['All Free Plan features', 'Highest priority Gemini inference', 'Unlimited PDF uploads', 'Full Chat History export', 'Multi-file parallel index'].map(t => (
@@ -1458,13 +1464,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 width: '100%',
                 padding: '13px',
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                background: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
                 border: 'none',
                 color: 'white',
                 fontSize: '14px',
                 fontWeight: 700,
                 cursor: 'pointer',
-                boxShadow: '0 6px 20px rgba(99,102,241,0.4)',
+                boxShadow: '0 6px 20px rgba(37,99,235,0.35)',
               }}
             >
               Unlock Pro Access →
