@@ -386,7 +386,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
 
           {user ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', position: 'relative' }}>
+            <div className="hidden md:flex" style={{ alignItems: 'center', gap: '12px', position: 'relative' }}>
               {/* Dashboard Shortcut Button */}
               <button
                 onClick={() => navigate('/dashboard')}
@@ -501,7 +501,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               </div>
             </div>
           ) : (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div className="hidden md:flex" style={{ alignItems: 'center', gap: '10px' }}>
               {/* Secondary Sign In Button */}
               <button
                 onClick={() => openAuth('login')}
