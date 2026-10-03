@@ -239,11 +239,10 @@ const DashboardPage = () => {
                     <button
                       key={st}
                       onClick={() => setStatusFilter(st)}
-                      className={`px-2.5 py-1 rounded-lg font-semibold transition-colors capitalize text-[11px] ${
-                        statusFilter === st
+                      className={`px-2.5 py-1 rounded-lg font-semibold transition-colors capitalize text-[11px] ${statusFilter === st
                           ? 'bg-amber-600 text-white shadow-sm'
                           : 'text-stone-600 hover:text-stone-900'
-                      }`}
+                        }`}
                     >
                       {st === 'completed' ? 'Ready' : st}
                     </button>
