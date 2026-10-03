@@ -76,7 +76,7 @@ const STYLES = `
   .fx-exit-r  { animation:slideOutRight .18s ease forwards; }
 
   /* ── Responsive Layout ── */
-  .lp-root       { min-height:100vh; display:flex; font-family:Inter,system-ui,sans-serif; overflow:hidden; position:relative; background:#06060a; }
+  .lp-root       { min-height:100vh; display:flex; font-family:Inter,system-ui,sans-serif; overflow:hidden; position:relative; background:#fbf9f4; color:#1c1917; }
   .lp-layout     { position:relative; z-index:3; display:flex; width:100%; min-height:100vh; }
   .lp-hero       { flex:1 1 50%; display:flex; flex-direction:column; justify-content:space-between; padding:48px 56px; min-width:0; }
   .lp-auth       { flex:1 1 50%; display:flex; align-items:center; justify-content:center; padding:40px 48px; position:relative; }
@@ -137,31 +137,30 @@ function useTyping(words, speed = 85) {
 }
 
 /* ─── Floating Doc Card ─────────────────────────────────── */
-function DocCard({ title, pages, pct, anim, style, accent = '#7c3aed', accentEnd = '#a78bfa', className = '' }) {
+function DocCard({ title, pages, pct, anim, style, accent = '#d97706', accentEnd = '#b45309', className = '' }) {
   return (
     <div className={className} style={{
       position: 'absolute', width: '160px',
-      background: 'rgba(255,255,255,0.05)',
-      border: `1px solid ${accent}40`,
+      background: '#ffffff',
+      border: `1px solid #e7e0d3`,
       borderRadius: '16px', padding: '14px',
-      backdropFilter: 'blur(20px)',
-      boxShadow: `0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px ${accent}15, 0 0 20px ${accent}20`,
+      boxShadow: `0 8px 30px rgba(217,119,6,0.12)`,
       animation: anim,
       ...style,
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-        <div style={{ width: '30px', height: '30px', borderRadius: '9px', background: `linear-gradient(135deg,${accent},${accentEnd})`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: `0 4px 12px ${accent}50` }}>
+        <div style={{ width: '30px', height: '30px', borderRadius: '9px', background: `linear-gradient(135deg,${accent},${accentEnd})`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: `0 4px 12px ${accent}40` }}>
           <FileText size={13} color="white" />
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: '11px', fontWeight: 700, color: 'rgba(255,255,255,0.9)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{title}</div>
-          <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', marginTop: '1px' }}>{pages} pages</div>
+          <div style={{ fontSize: '11px', fontWeight: 700, color: '#1c1917', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{title}</div>
+          <div style={{ fontSize: '10px', color: '#78716c', marginTop: '1px' }}>{pages} pages</div>
         </div>
       </div>
-      <div style={{ height: '3px', borderRadius: '99px', background: 'rgba(255,255,255,0.07)', overflow: 'hidden' }}>
+      <div style={{ height: '3px', borderRadius: '99px', background: '#f4f0e6', overflow: 'hidden' }}>
         <div style={{ height: '100%', width: `${pct}%`, background: `linear-gradient(90deg,${accent},${accentEnd})`, borderRadius: '99px' }} />
       </div>
-      <div style={{ fontSize: '10px', color: '#34d399', fontWeight: 600, marginTop: '7px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+      <div style={{ fontSize: '10px', color: '#047857', fontWeight: 600, marginTop: '7px', display: 'flex', alignItems: 'center', gap: '4px' }}>
         <Check size={10} /> Ready to chat
       </div>
     </div>
@@ -180,10 +179,10 @@ function AuthInput({ id, name, type = 'text', placeholder, value, onChange, righ
         style={{
           width: '100%', padding: `12px ${rightEl ? '44px' : '14px'} 12px 14px`,
           borderRadius: '12px', fontSize: '14px', fontFamily: 'inherit',
-          background: focused ? 'rgba(139,92,246,0.06)' : 'rgba(255,255,255,0.04)',
-          border: focused ? '1.5px solid rgba(139,92,246,0.6)' : '1.5px solid rgba(255,255,255,0.09)',
-          color: 'white', outline: 'none',
-          boxShadow: focused ? '0 0 0 3px rgba(124,58,237,0.12)' : 'none',
+          background: focused ? 'rgba(217,119,6,0.05)' : '#ffffff',
+          border: focused ? '1.5px solid #d97706' : '1.5px solid #e7e0d3',
+          color: '#1c1917', outline: 'none',
+          boxShadow: focused ? '0 0 0 3px rgba(217,119,6,0.15)' : 'none',
           transition: 'all .2s',
         }}
       />
@@ -194,7 +193,7 @@ function AuthInput({ id, name, type = 'text', placeholder, value, onChange, righ
 
 function FieldErr({ msg }) {
   return msg ? (
-    <p style={{ fontSize: '12px', color: '#f87171', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+    <p style={{ fontSize: '12px', color: '#dc2626', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '5px' }}>
       <AlertCircle size={11} /> {msg}
     </p>
   ) : null;

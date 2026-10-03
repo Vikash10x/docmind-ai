@@ -53,8 +53,8 @@ export default function ResetPasswordPage() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: '#06060c',
-      color: '#fff',
+      background: '#fbf9f4',
+      color: '#1c1917',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -73,7 +73,7 @@ export default function ResetPasswordPage() {
         width: '500px',
         height: '500px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(124,58,237,0.25) 0%, rgba(236,72,153,0.15) 50%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(217,119,6,0.12) 0%, transparent 70%)',
         filter: 'blur(70px)',
         pointerEvents: 'none',
       }} />
@@ -84,8 +84,8 @@ export default function ResetPasswordPage() {
           width: '42px',
           height: '42px',
           borderRadius: '14px',
-          background: 'linear-gradient(135deg,#7c3aed,#4f46e5)',
-          boxShadow: '0 0 20px rgba(124,58,237,0.5)',
+          background: 'linear-gradient(135deg, #d97706, #b45309)',
+          boxShadow: '0 4px 16px rgba(217,119,6,0.3)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
@@ -94,7 +94,7 @@ export default function ResetPasswordPage() {
         </div>
         <div>
           <div style={{ fontSize: '20px', fontWeight: 800, letterSpacing: '-0.5px' }}>
-            <span>DocMind</span><span style={{ color: '#a78bfa' }}>AI</span>
+            <span>DocMind</span><span style={{ color: '#b45309' }}>AI</span>
           </div>
         </div>
       </div>
@@ -105,13 +105,13 @@ export default function ResetPasswordPage() {
         maxWidth: '440px',
         padding: '1.5px',
         borderRadius: '24px',
-        background: 'linear-gradient(135deg,#ec4899,#7c3aed,#06b6d4)',
-        boxShadow: '0 0 50px rgba(124,58,237,0.25)',
+        background: 'linear-gradient(135deg, #fcd34d, #d97706, #b45309)',
+        boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
       }}>
         <div style={{
           borderRadius: '23px',
-          background: 'rgba(10,10,18,0.96)',
-          backdropFilter: 'blur(30px)',
+          background: '#fbf9f4',
+          border: '1px solid #e7e0d3',
           padding: '36px 32px',
         }}>
           {success ? (
@@ -120,18 +120,18 @@ export default function ResetPasswordPage() {
                 width: '64px',
                 height: '64px',
                 borderRadius: '50%',
-                background: 'rgba(34,197,94,0.15)',
-                border: '1px solid rgba(34,197,94,0.3)',
+                background: '#d1fae5',
+                border: '1px solid #a7f3d0',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: '0 auto 20px',
-                color: '#4ade80'
+                color: '#047857'
               }}>
                 <CheckCircle2 size={36} />
               </div>
-              <h2 style={{ fontSize: '22px', fontWeight: 800, marginBottom: '8px' }}>Password Reset!</h2>
-              <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px', lineHeight: 1.6, marginBottom: '24px' }}>
+              <h2 style={{ fontSize: '22px', fontWeight: 800, marginBottom: '8px', color: '#1c1917' }}>Password Reset!</h2>
+              <p style={{ color: '#57534e', fontSize: '14px', lineHeight: 1.6, marginBottom: '24px' }}>
                 Your password has been changed successfully. Redirecting you to login...
               </p>
               <Link
@@ -142,12 +142,12 @@ export default function ResetPasswordPage() {
                   gap: '8px',
                   padding: '12px 24px',
                   borderRadius: '12px',
-                  background: 'linear-gradient(135deg,#7c3aed,#5b21b6)',
+                  background: 'linear-gradient(135deg, #d97706, #b45309)',
                   color: 'white',
                   textDecoration: 'none',
                   fontWeight: 600,
                   fontSize: '14px',
-                  boxShadow: '0 4px 20px rgba(124,58,237,0.4)',
+                  boxShadow: '0 4px 16px rgba(217,119,6,0.3)',
                 }}
               >
                 Sign In Now <ArrowRight size={15} />
@@ -160,18 +160,18 @@ export default function ResetPasswordPage() {
                   width: '52px',
                   height: '52px',
                   borderRadius: '16px',
-                  background: 'rgba(124,58,237,0.15)',
-                  border: '1px solid rgba(124,58,237,0.3)',
+                  background: '#fef3c7',
+                  border: '1px solid #fde68a',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 14px',
-                  color: '#c4b5fd'
+                  color: '#b45309'
                 }}>
                   <Lock size={22} />
                 </div>
-                <h2 style={{ fontSize: '22px', fontWeight: 800, marginBottom: '6px' }}>Set New Password</h2>
-                <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '13px' }}>
+                <h2 style={{ fontSize: '22px', fontWeight: 800, marginBottom: '6px', color: '#1c1917' }}>Set New Password</h2>
+                <p style={{ color: '#57534e', fontSize: '13px' }}>
                   Please enter your new strong password below.
                 </p>
               </div>
@@ -183,9 +183,9 @@ export default function ResetPasswordPage() {
                   gap: '8px',
                   padding: '10px 14px',
                   borderRadius: '12px',
-                  background: 'rgba(239,68,68,0.1)',
-                  border: '1px solid rgba(239,68,68,0.25)',
-                  color: '#f87171',
+                  background: '#fee2e2',
+                  border: '1px solid #fca5a5',
+                  color: '#991b1b',
                   fontSize: '13px'
                 }}>
                   <AlertCircle size={15} />
@@ -194,7 +194,7 @@ export default function ResetPasswordPage() {
               )}
 
               <div>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: '6px' }}>
+                <label style={{ fontSize: '12px', fontWeight: 600, color: '#57534e', display: 'block', marginBottom: '6px' }}>
                   New Password
                 </label>
                 <div style={{ position: 'relative' }}>
@@ -208,9 +208,9 @@ export default function ResetPasswordPage() {
                       width: '100%',
                       padding: '12px 42px 12px 14px',
                       borderRadius: '12px',
-                      background: 'rgba(255,255,255,0.05)',
-                      border: '1px solid rgba(255,255,255,0.12)',
-                      color: 'white',
+                      background: '#ffffff',
+                      border: '1px solid #e7e0d3',
+                      color: '#1c1917',
                       fontSize: '14px',
                       outline: 'none',
                       boxSizing: 'border-box'
@@ -226,7 +226,7 @@ export default function ResetPasswordPage() {
                       transform: 'translateY(-50%)',
                       background: 'none',
                       border: 'none',
-                      color: 'rgba(255,255,255,0.4)',
+                      color: '#78716c',
                       cursor: 'pointer',
                       padding: '4px'
                     }}
@@ -237,7 +237,7 @@ export default function ResetPasswordPage() {
               </div>
 
               <div>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: '6px' }}>
+                <label style={{ fontSize: '12px', fontWeight: 600, color: '#57534e', display: 'block', marginBottom: '6px' }}>
                   Confirm New Password
                 </label>
                 <input
@@ -250,9 +250,9 @@ export default function ResetPasswordPage() {
                     width: '100%',
                     padding: '12px 14px',
                     borderRadius: '12px',
-                    background: 'rgba(255,255,255,0.05)',
-                    border: '1px solid rgba(255,255,255,0.12)',
-                    color: 'white',
+                    background: '#ffffff',
+                    border: '1px solid #e7e0d3',
+                    color: '#1c1917',
                     fontSize: '14px',
                     outline: 'none',
                     boxSizing: 'border-box'
@@ -267,7 +267,7 @@ export default function ResetPasswordPage() {
                   width: '100%',
                   padding: '14px',
                   borderRadius: '14px',
-                  background: 'linear-gradient(135deg,#7c3aed,#ec4899)',
+                  background: 'linear-gradient(135deg, #d97706, #b45309)',
                   color: 'white',
                   border: 'none',
                   fontSize: '14px',
@@ -278,7 +278,7 @@ export default function ResetPasswordPage() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '8px',
-                  boxShadow: '0 4px 20px rgba(124,58,237,0.4)',
+                  boxShadow: '0 4px 16px rgba(217,119,6,0.3)',
                   marginTop: '6px',
                   transition: 'transform 0.2s',
                 }}
@@ -286,9 +286,9 @@ export default function ResetPasswordPage() {
                 {loading ? 'Updating Password...' : 'Reset Password'} <ArrowRight size={16} />
               </button>
 
-              <p style={{ textAlign: 'center', fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: '8px 0 0' }}>
+              <p style={{ textAlign: 'center', fontSize: '13px', color: '#57534e', margin: '8px 0 0' }}>
                 Remember your password?{' '}
-                <Link to="/login" style={{ color: '#a78bfa', textDecoration: 'none', fontWeight: 600 }}>
+                <Link to="/login" style={{ color: '#b45309', textDecoration: 'none', fontWeight: 600 }}>
                   Back to Sign In
                 </Link>
               </p>

@@ -207,19 +207,17 @@ const ChatPage = () => {
   if (docError) {
     return (
       <div
-        className="min-h-screen flex items-center justify-center"
-        style={{ background: 'linear-gradient(160deg, #07070e 0%, #06060a 100%)' }}
+        className="min-h-screen flex items-center justify-center bg-[#fbf9f4]"
       >
-        <div className="text-center p-8 animate-scale-in">
+        <div className="text-center p-8 bg-white border border-[#e7e0d3] rounded-2xl shadow-sm max-w-sm w-full mx-4">
           <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
-            style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}
+            className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 bg-red-50 border border-red-200"
           >
-            <AlertCircle size={28} className="text-red-400" />
+            <AlertCircle size={26} className="text-red-600" />
           </div>
-          <h2 className="text-zinc-200 font-semibold mb-2">Document not found</h2>
-          <p className="text-zinc-500 text-sm mb-6">{docError}</p>
-          <button onClick={() => navigate('/dashboard')} className="btn-primary">
+          <h2 className="text-[#1c1917] font-bold text-lg mb-1">Document not found</h2>
+          <p className="text-stone-600 text-xs mb-6">{docError}</p>
+          <button onClick={() => navigate('/dashboard')} className="btn-primary w-full py-2.5">
             Back to Dashboard
           </button>
         </div>
@@ -236,49 +234,41 @@ const ChatPage = () => {
 
   return (
     <div
-      className="h-screen flex flex-col overflow-hidden"
-      style={{ background: 'linear-gradient(160deg, #07070e 0%, #06060a 60%, #09060f 100%)' }}
+      className="h-screen flex flex-col overflow-hidden bg-[#fbf9f4] text-[#1c1917]"
     >
-      {/* Ambient */}
+      {/* Ambient background glow */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(139,92,246,0.07) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse 70% 45% at 50% 0%, rgba(217,119,6,0.06) 0%, transparent 60%)',
         }}
       />
 
       {/* ── Header ── */}
       <header
-        className="flex-shrink-0 relative z-10"
-        style={{
-          background: 'rgba(6,6,10,0.8)',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
-          backdropFilter: 'blur(20px)',
-        }}
+        className="flex-shrink-0 relative z-10 bg-[#f4f0e6]/95 border-b border-[#e7e0d3] backdrop-blur-md"
       >
         <div className="max-w-4xl mx-auto px-4 h-[60px] flex items-center gap-3">
           <button
             onClick={() => navigate('/dashboard')}
-            className="w-9 h-9 rounded-xl flex items-center justify-center text-zinc-500 hover:text-zinc-200 transition-all"
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+            className="w-9 h-9 rounded-xl flex items-center justify-center text-stone-600 hover:text-stone-900 bg-white border border-[#e7e0d3] hover:bg-[#f4f0e6] transition-all shadow-xs"
           >
             <ArrowLeft size={16} />
           </button>
 
           <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-            style={{ background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.2)' }}
+            className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 bg-amber-50 border border-amber-200 text-amber-700"
           >
-            <FileText size={16} className="text-violet-400" />
+            <FileText size={16} />
           </div>
 
           <div className="flex-1 min-w-0">
-            <h1 className="text-sm font-semibold text-zinc-100 truncate leading-snug">
+            <h1 className="text-sm font-bold text-[#1c1917] truncate leading-snug">
               {document?.originalName || 'Loading...'}
             </h1>
             {document && (
-              <p className="text-[11px] text-zinc-500">
-                {document.totalPages} pages · {document.totalChunks} chunks indexed
+              <p className="text-[11px] text-stone-500 font-medium">
+                {document.totalPages} pages · {document.totalChunks} vectors indexed
               </p>
             )}
           </div>
@@ -290,14 +280,10 @@ const ChatPage = () => {
                 <div className="relative">
                   <button
                     onClick={() => setShowExportMenu(!showExportMenu)}
-                    className="h-9 px-3 rounded-xl flex items-center gap-1.5 text-xs font-semibold text-zinc-300 hover:text-white transition-all"
-                    style={{
-                      background: 'rgba(139,92,246,0.12)',
-                      border: '1px solid rgba(139,92,246,0.25)',
-                    }}
+                    className="h-9 px-3 rounded-xl flex items-center gap-1.5 text-xs font-semibold text-[#1c1917] bg-white border border-[#e7e0d3] hover:bg-[#f4f0e6] transition-all shadow-xs"
                     title="Export Conversation"
                   >
-                    <Download size={13} className="text-violet-400" />
+                    <Download size={13} className="text-amber-700" />
                     <span className="hidden sm:inline">Export</span>
                     <ChevronDown size={12} className="opacity-60" />
                   </button>
@@ -309,37 +295,31 @@ const ChatPage = () => {
                         onClick={() => setShowExportMenu(false)}
                       />
                       <div
-                        className="absolute right-0 mt-2 w-48 rounded-2xl py-1.5 z-50 shadow-2xl animate-fade-in"
-                        style={{
-                          background: 'rgba(15,15,24,0.96)',
-                          border: '1px solid rgba(139,92,246,0.25)',
-                          backdropFilter: 'blur(20px)',
-                          boxShadow: '0 10px 40px rgba(0,0,0,0.6)',
-                        }}
+                        className="absolute right-0 mt-2 w-48 rounded-xl py-1.5 z-50 shadow-lg bg-white border border-[#e7e0d3] animate-fade-in"
                       >
-                        <div className="px-3 py-1 text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
+                        <div className="px-3 py-1 text-[10px] font-bold text-stone-500 uppercase tracking-wider">
                           Export Chat As
                         </div>
                         <button
                           onClick={exportChatMarkdown}
-                          className="w-full px-3 py-2 text-left text-xs text-zinc-200 hover:bg-violet-500/15 flex items-center gap-2.5 transition-colors"
+                          className="w-full px-3 py-2 text-left text-xs text-[#1c1917] hover:bg-[#f4f0e6] flex items-center gap-2.5 transition-colors font-medium"
                         >
-                          <FileDown size={14} className="text-violet-400" />
+                          <FileDown size={14} className="text-amber-700" />
                           <span>Markdown (.md)</span>
                         </button>
                         <button
                           onClick={exportChatTxt}
-                          className="w-full px-3 py-2 text-left text-xs text-zinc-200 hover:bg-violet-500/15 flex items-center gap-2.5 transition-colors"
+                          className="w-full px-3 py-2 text-left text-xs text-[#1c1917] hover:bg-[#f4f0e6] flex items-center gap-2.5 transition-colors font-medium"
                         >
-                          <FileText size={14} className="text-blue-400" />
+                          <FileText size={14} className="text-amber-800" />
                           <span>Plain Text (.txt)</span>
                         </button>
-                        <div className="my-1 border-t border-white/5" />
+                        <div className="my-1 border-t border-[#e7e0d3]" />
                         <button
                           onClick={handlePrint}
-                          className="w-full px-3 py-2 text-left text-xs text-zinc-200 hover:bg-violet-500/15 flex items-center gap-2.5 transition-colors"
+                          className="w-full px-3 py-2 text-left text-xs text-[#1c1917] hover:bg-[#f4f0e6] flex items-center gap-2.5 transition-colors font-medium"
                         >
-                          <Printer size={14} className="text-emerald-400" />
+                          <Printer size={14} className="text-emerald-700" />
                           <span>Print / Save PDF</span>
                         </button>
                       </div>
@@ -350,16 +330,14 @@ const ChatPage = () => {
                 <button
                   onClick={handleRegenerate}
                   disabled={loading || messages.length < 2}
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-zinc-500 hover:text-zinc-200 disabled:opacity-30 transition-all"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center text-stone-600 hover:text-stone-900 disabled:opacity-30 bg-white border border-[#e7e0d3] hover:bg-[#f4f0e6] transition-all shadow-xs"
                   title="Regenerate last answer"
                 >
                   <RotateCcw size={14} />
                 </button>
                 <button
                   onClick={handleClearChat}
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-zinc-500 hover:text-red-400 transition-all"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center text-stone-600 hover:text-red-700 disabled:opacity-30 bg-white border border-[#e7e0d3] hover:bg-red-50 transition-all shadow-xs"
                   title="Clear chat history"
                 >
                   <Trash2 size={14} />
@@ -376,27 +354,22 @@ const ChatPage = () => {
           {historyLoading ? (
             <div className="flex justify-center py-16">
               <div className="flex flex-col items-center gap-3">
-                <Loader2 size={24} className="animate-spin text-violet-500/60" />
-                <p className="text-xs text-zinc-600">Loading conversation...</p>
+                <Loader2 size={24} className="animate-spin text-amber-700" />
+                <p className="text-xs text-stone-600 font-medium">Loading conversation...</p>
               </div>
             </div>
           ) : messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center animate-fade-in">
               <div
-                className="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 animate-float"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(79,70,229,0.1) 100%)',
-                  border: '1px solid rgba(139,92,246,0.2)',
-                  boxShadow: '0 0 40px rgba(139,92,246,0.1)',
-                }}
+                className="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 bg-[#fef3c7] border border-[#fde68a] shadow-sm animate-float"
               >
-                <MessageSquare size={34} className="text-violet-400/70" />
+                <MessageSquare size={34} className="text-amber-800" />
               </div>
-              <h3 className="text-zinc-200 font-semibold text-lg mb-1">Ready to answer</h3>
-              <p className="text-zinc-500 text-sm max-w-sm leading-relaxed mb-8">
+              <h3 className="text-[#1c1917] font-bold text-lg mb-1">Ready to answer</h3>
+              <p className="text-stone-600 text-sm max-w-sm leading-relaxed mb-8">
                 Ask anything about{' '}
-                <span className="text-zinc-300 font-medium">{document?.originalName}</span>.
-                Answers are grounded in the document content.
+                <span className="text-[#1c1917] font-semibold">{document?.originalName}</span>.
+                Answers are grounded in document content.
               </p>
 
               {/* Suggested questions */}
@@ -405,19 +378,7 @@ const ChatPage = () => {
                   <button
                     key={q}
                     onClick={() => setQuestion(q)}
-                    className="px-4 py-2 rounded-xl text-xs font-medium text-zinc-400 hover:text-violet-300 transition-all duration-200"
-                    style={{
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(255,255,255,0.07)',
-                    }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.background = 'rgba(139,92,246,0.07)';
-                      e.currentTarget.style.borderColor = 'rgba(139,92,246,0.25)';
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
-                    }}
+                    className="px-4 py-2 rounded-xl text-xs font-semibold text-stone-700 hover:text-amber-900 bg-white border border-[#e7e0d3] hover:border-amber-500/40 hover:bg-[#fef3c7]/50 transition-all duration-200 shadow-xs"
                   >
                     {q}
                   </button>
@@ -432,10 +393,9 @@ const ChatPage = () => {
 
           {error && (
             <div
-              className="flex items-center gap-2.5 p-3.5 rounded-xl text-sm animate-fade-in"
-              style={{ background: 'rgba(239,68,68,0.07)', border: '1px solid rgba(239,68,68,0.15)', color: '#fca5a5' }}
+              className="flex items-center gap-2.5 p-3.5 rounded-xl text-sm animate-fade-in bg-red-50 border border-red-200 text-red-700"
             >
-              <AlertCircle size={14} className="flex-shrink-0" />
+              <AlertCircle size={14} className="flex-shrink-0 text-red-600" />
               {error}
             </div>
           )}
@@ -446,20 +406,11 @@ const ChatPage = () => {
 
       {/* ── Input ── */}
       <div
-        className="flex-shrink-0 relative z-10"
-        style={{
-          background: 'rgba(6,6,10,0.85)',
-          borderTop: '1px solid rgba(255,255,255,0.06)',
-          backdropFilter: 'blur(20px)',
-        }}
+        className="flex-shrink-0 relative z-10 bg-[#f4f0e6]/95 border-t border-[#e7e0d3] backdrop-blur-md"
       >
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div
-            className="flex gap-3 items-end rounded-2xl p-3 transition-all duration-200"
-            style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-            }}
+            className="flex gap-3 items-end rounded-2xl p-3 transition-all duration-200 bg-white border border-[#e7e0d3] shadow-sm focus-within:border-amber-600/60 focus-within:ring-2 focus-within:ring-amber-500/15"
           >
             <div className="flex-1 relative">
               <textarea
@@ -471,7 +422,7 @@ const ChatPage = () => {
                 placeholder="Ask a question about this document..."
                 rows={1}
                 disabled={loading || document?.status !== 'completed'}
-                className="w-full bg-transparent text-zinc-100 placeholder-zinc-600 text-sm resize-none focus:outline-none leading-relaxed max-h-32 overflow-y-auto"
+                className="w-full bg-transparent text-[#1c1917] placeholder-stone-400 text-sm resize-none focus:outline-none leading-relaxed max-h-32 overflow-y-auto font-medium"
                 style={{ minHeight: '24px' }}
                 onInput={(e) => {
                   e.target.style.height = 'auto';
@@ -488,14 +439,14 @@ const ChatPage = () => {
               style={
                 isListening
                   ? {
-                      background: 'linear-gradient(135deg, #ec4899 0%, #ef4444 100%)',
-                      boxShadow: '0 0 20px rgba(236,72,153,0.6), 0 0 40px rgba(239,68,68,0.3)',
-                      animation: 'pulse 1.5s infinite',
+                      background: 'linear-gradient(135deg, #d97706 0%, #dc2626 100%)',
+                      boxShadow: '0 0 16px rgba(217,119,6,0.4)',
+                      color: 'white',
                     }
                   : {
-                      background: 'rgba(255,255,255,0.06)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      color: 'rgb(161,161,170)',
+                      background: '#f4f0e6',
+                      border: '1px solid #e7e0d3',
+                      color: '#57534e',
                     }
               }
               title={isListening ? 'Stop listening' : 'Voice Input (Speak your question)'}
@@ -503,7 +454,7 @@ const ChatPage = () => {
               {isListening ? (
                 <MicOff size={16} className="text-white animate-pulse" />
               ) : (
-                <Mic size={16} className="hover:text-violet-300" />
+                <Mic size={16} className="hover:text-amber-800" />
               )}
             </button>
 
@@ -515,21 +466,22 @@ const ChatPage = () => {
               className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200 disabled:opacity-30"
               style={{
                 background: question.trim() && !loading
-                  ? 'linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)'
-                  : 'rgba(255,255,255,0.06)',
-                boxShadow: question.trim() && !loading ? '0 4px 16px rgba(109,40,217,0.35)' : 'none',
+                  ? 'linear-gradient(135deg, #d97706 0%, #b45309 100%)'
+                  : '#ede8dd',
+                color: question.trim() && !loading ? 'white' : '#a8a29e',
+                boxShadow: question.trim() && !loading ? '0 4px 14px rgba(217,119,6,0.3)' : 'none',
               }}
               title="Send question"
             >
               {loading
                 ? <Loader2 size={16} className="animate-spin text-white" />
-                : <Send size={16} className={question.trim() ? 'text-white' : 'text-zinc-600'} />
+                : <Send size={16} className={question.trim() ? 'text-white' : 'text-stone-400'} />
               }
             </button>
           </div>
           <div className="flex items-center justify-center gap-1.5 mt-2.5">
-            <Sparkles size={9} className="text-zinc-700" />
-            <p className="text-[11px] text-zinc-700 text-center">
+            <Sparkles size={11} className="text-amber-700" />
+            <p className="text-[11px] text-stone-500 font-medium text-center">
               Answers grounded in document · Press Enter to send
             </p>
           </div>
@@ -537,6 +489,7 @@ const ChatPage = () => {
       </div>
     </div>
   );
+
 };
 
 export default ChatPage;

@@ -24,8 +24,8 @@ const Navbar = () => {
     <nav
       className="sticky top-0 z-50"
       style={{
-        background: 'rgba(7,9,14,0.85)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        background: 'rgba(244,240,230,0.95)',
+        borderBottom: '1px solid #e7e0d3',
         backdropFilter: 'blur(24px) saturate(180%)',
         WebkitBackdropFilter: 'blur(24px) saturate(180%)',
       }}
@@ -36,14 +36,14 @@ const Navbar = () => {
           <BrainLogo size={28} />
           <div className="flex items-center">
             <span
-              className="text-[17px] font-extrabold leading-none tracking-tight text-white"
+              className="text-[17px] font-extrabold leading-none tracking-tight text-[#1c1917]"
             >
               DocMind
             </span>
             <span
               className="text-[17px] font-extrabold leading-none tracking-tight ml-1"
               style={{
-                background: 'linear-gradient(135deg, #60a5fa, #a855f7)',
+                background: 'linear-gradient(135deg, #d97706, #b45309)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -59,11 +59,11 @@ const Navbar = () => {
             <Link
               key={to}
               to={to}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-all duration-200"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium text-stone-600 hover:text-stone-900 transition-all duration-200"
               style={{}}
               onMouseEnter={e => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-                e.currentTarget.style.color = 'white';
+                e.currentTarget.style.background = 'rgba(0,0,0,0.04)';
+                e.currentTarget.style.color = '#1c1917';
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.background = '';
@@ -80,14 +80,14 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-2">
           {/* AI Badge */}
           <div
-            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium"
+            className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
             style={{
-              background: 'rgba(139,92,246,0.1)',
-              border: '1px solid rgba(139,92,246,0.2)',
-              color: '#c4b5fd',
+              background: '#fef3c7',
+              border: '1px solid #fde68a',
+              color: '#b45309',
             }}
           >
-            <Zap size={11} className="text-violet-400" />
+            <Zap size={11} className="text-amber-600" />
             Gemini Powered
           </div>
 
@@ -95,29 +95,30 @@ const Navbar = () => {
           <div
             className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl"
             style={{
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.07)',
+              background: '#ffffff',
+              border: '1px solid #e7e0d3',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.02)',
             }}
           >
             <div
               className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
               style={{
-                background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
-                boxShadow: '0 0 8px rgba(124,58,237,0.4)',
+                background: 'linear-gradient(135deg, #d97706, #b45309)',
+                boxShadow: '0 2px 6px rgba(217,119,6,0.3)',
               }}
             >
               <span className="text-white text-xs font-bold">
                 {user?.name?.charAt(0).toUpperCase()}
               </span>
             </div>
-            <span className="text-zinc-300 text-sm font-medium">{user?.name}</span>
+            <span className="text-[#1c1917] text-sm font-semibold">{user?.name}</span>
           </div>
 
           {/* Logout */}
           <button
             onClick={handleLogout}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium text-zinc-500 hover:text-red-400 transition-all duration-200"
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.06)'; }}
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium text-stone-500 hover:text-red-600 transition-all duration-200"
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.08)'; }}
             onMouseLeave={e => { e.currentTarget.style.background = ''; }}
           >
             <LogOut size={14} />
@@ -128,8 +129,8 @@ const Navbar = () => {
         {/* ── Mobile Menu Button ── */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden w-9 h-9 flex items-center justify-center rounded-xl text-zinc-400 hover:text-zinc-100 transition-colors"
-          style={{ background: menuOpen ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+          className="md:hidden w-9 h-9 flex items-center justify-center rounded-xl text-stone-600 hover:text-stone-900 transition-colors"
+          style={{ background: menuOpen ? 'rgba(0,0,0,0.06)' : '#ffffff', border: '1px solid #e7e0d3' }}
         >
           {menuOpen ? <X size={16} /> : <Menu size={16} />}
         </button>
@@ -138,26 +139,26 @@ const Navbar = () => {
       {/* ── Mobile Dropdown ── */}
       {menuOpen && (
         <div
-          className="md:hidden px-4 pb-4 pt-2 space-y-1 animate-slide-down"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
+          className="md:hidden px-4 pb-4 pt-2 space-y-1 animate-slide-down bg-[#ffffff]"
+          style={{ borderTop: '1px solid #e7e0d3' }}
         >
           {navLinks.map(({ to, label, icon: Icon }) => (
             <Link
               key={to}
               to={to}
               onClick={() => setMenuOpen(false)}
-              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm text-zinc-300 hover:text-white transition-all duration-200"
+              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-stone-700 hover:text-stone-900 transition-all duration-200"
               style={{}}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.04)'; }}
               onMouseLeave={e => { e.currentTarget.style.background = ''; }}
             >
-              <Icon size={15} className="text-zinc-500" /> {label}
+              <Icon size={15} className="text-stone-500" /> {label}
             </Link>
           ))}
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm text-red-400 w-full transition-all duration-200"
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.07)'; }}
+            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 w-full transition-all duration-200"
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.08)'; }}
             onMouseLeave={e => { e.currentTarget.style.background = ''; }}
           >
             <LogOut size={15} /> Logout

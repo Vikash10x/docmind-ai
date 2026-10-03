@@ -90,22 +90,21 @@ const ProfilePage = () => {
   };
 
   const infoRows = [
-    { icon: User, label: 'Full Name', value: user?.name, color: '#a78bfa', bg: 'rgba(139,92,246,0.1)', border: 'rgba(139,92,246,0.18)' },
-    { icon: Mail, label: 'Email Address', value: user?.email, color: '#60a5fa', bg: 'rgba(96,165,250,0.08)', border: 'rgba(96,165,250,0.15)' },
-    { icon: Calendar, label: 'Member Since', value: formatDate(user?.createdAt), color: '#34d399', bg: 'rgba(52,211,153,0.08)', border: 'rgba(52,211,153,0.15)' },
-    { icon: Shield, label: 'Account Type', value: 'Standard', color: '#fbbf24', bg: 'rgba(251,191,36,0.08)', border: 'rgba(251,191,36,0.15)' },
+    { icon: User, label: 'Full Name', value: user?.name, color: '#b45309', bg: '#fef3c7', border: '#fde68a' },
+    { icon: Mail, label: 'Email Address', value: user?.email, color: '#d97706', bg: '#fff7ed', border: '#ffedd5' },
+    { icon: Calendar, label: 'Member Since', value: formatDate(user?.createdAt), color: '#047857', bg: '#d1fae5', border: '#a7f3d0' },
+    { icon: Shield, label: 'Account Type', value: 'Standard', color: '#c2410c', bg: '#ffedd5', border: '#fed7aa' },
   ];
 
   return (
     <div
-      className="min-h-screen"
-      style={{ background: 'linear-gradient(160deg, #07070e 0%, #06060a 60%, #09060f 100%)' }}
+      className="min-h-screen bg-[#fbf9f4] text-[#1c1917]"
     >
       {/* Ambient glow */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 60% 40% at 70% 20%, rgba(139,92,246,0.06) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse 60% 40% at 70% 20%, rgba(217,119,6,0.06) 0%, transparent 60%)',
           zIndex: 0,
         }}
       />
@@ -115,29 +114,30 @@ const ProfilePage = () => {
       <main className="relative z-10 max-w-2xl mx-auto px-4 py-10">
         {/* Page title */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-white">Profile & Account</h1>
-          <p className="text-zinc-500 text-sm mt-1">Manage your account details and security.</p>
+          <h1 className="text-2xl font-bold text-[#1c1917]">Profile & Account</h1>
+          <p className="text-stone-600 text-sm mt-1">Manage your account details and security.</p>
         </div>
 
         {/* ── Profile Hero Card ── */}
         <div
           className="relative rounded-3xl p-px overflow-hidden mb-5 animate-fade-in"
           style={{
-            background: 'linear-gradient(135deg, rgba(139,92,246,0.25) 0%, rgba(255,255,255,0.06) 60%, rgba(79,70,229,0.1) 100%)',
+            background: 'linear-gradient(135deg, #fcd34d, #d97706, #b45309)',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.04)',
           }}
         >
           <div
             className="rounded-3xl p-6"
-            style={{ background: 'rgba(10,10,18,0.97)', backdropFilter: 'blur(16px)' }}
+            style={{ background: '#fbf9f4', border: '1px solid #e7e0d3' }}
           >
             {/* Avatar + name row */}
-            <div className="flex items-center gap-4 mb-6 pb-6" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+            <div className="flex items-center gap-4 mb-6 pb-6" style={{ borderBottom: '1px solid #e7e0d3' }}>
               <div className="relative">
                 <div
                   className="w-20 h-20 rounded-2xl flex items-center justify-center"
                   style={{
-                    background: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)',
-                    boxShadow: '0 0 32px rgba(124,58,237,0.35), inset 0 1px 0 rgba(255,255,255,0.15)',
+                    background: 'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
+                    boxShadow: '0 4px 16px rgba(217,119,6,0.3)',
                   }}
                 >
                   <span className="text-3xl font-bold text-white">
@@ -147,7 +147,7 @@ const ProfilePage = () => {
                 {/* Online indicator */}
                 <div
                   className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 flex items-center justify-center"
-                  style={{ background: '#10b981', borderColor: '#0a0a12', boxShadow: '0 0 8px rgba(16,185,129,0.5)' }}
+                  style={{ background: '#10b981', borderColor: '#ffffff', boxShadow: '0 2px 6px rgba(16,185,129,0.4)' }}
                 >
                   <div className="w-2 h-2 rounded-full bg-white" />
                 </div>
@@ -160,42 +160,42 @@ const ProfilePage = () => {
                       type="text"
                       value={newName}
                       onChange={(e) => setNewName(e.target.value)}
-                      className="px-3 py-1.5 rounded-xl text-sm bg-white/[0.06] border border-violet-500/40 text-white focus:outline-none"
+                      className="px-3 py-1.5 rounded-xl text-sm bg-white border border-[#e7e0d3] text-[#1c1917] focus:outline-none focus:border-amber-600"
                       autoFocus
                     />
                     <button
                       type="submit"
                       disabled={savingName}
-                      className="w-8 h-8 rounded-lg bg-violet-600 text-white flex items-center justify-center"
+                      className="w-8 h-8 rounded-lg bg-amber-600 text-white flex items-center justify-center"
                     >
                       {savingName ? <Loader2 size={13} className="animate-spin" /> : <Check size={14} />}
                     </button>
                     <button
                       type="button"
                       onClick={() => { setEditingName(false); setNewName(user?.name || ''); }}
-                      className="w-8 h-8 rounded-lg bg-white/10 text-zinc-400 flex items-center justify-center"
+                      className="w-8 h-8 rounded-lg bg-[#ede8dd] text-stone-600 flex items-center justify-center"
                     >
                       <X size={14} />
                     </button>
                   </form>
                 ) : (
                   <div className="flex items-center gap-2">
-                    <h2 className="text-xl font-bold text-white leading-snug">{user?.name}</h2>
+                    <h2 className="text-xl font-bold text-[#1c1917] leading-snug">{user?.name}</h2>
                     <button
                       onClick={() => { setEditingName(true); setNewName(user?.name || ''); }}
-                      className="text-zinc-500 hover:text-violet-400 transition-colors p-1"
+                      className="text-stone-500 hover:text-amber-700 transition-colors p-1"
                       title="Edit name"
                     >
                       <Edit3 size={14} />
                     </button>
                   </div>
                 )}
-                <p className="text-zinc-500 text-sm mt-0.5 truncate">{user?.email}</p>
+                <p className="text-stone-600 text-sm mt-0.5 truncate">{user?.email}</p>
                 <div
                   className="inline-flex items-center gap-1.5 mt-2 px-2.5 py-1 rounded-full text-[11px] font-semibold"
-                  style={{ background: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.2)', color: '#6ee7b7' }}
+                  style={{ background: '#d1fae5', border: '1px solid #a7f3d0', color: '#047857' }}
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
                   Active Account
                 </div>
               </div>
@@ -207,7 +207,7 @@ const ProfilePage = () => {
                 <div
                   key={label}
                   className="flex items-center gap-3 p-3 rounded-xl transition-all duration-200"
-                  style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)' }}
+                  style={{ background: '#ffffff', border: '1px solid #e7e0d3' }}
                 >
                   <div
                     className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -216,8 +216,8 @@ const ProfilePage = () => {
                     <Icon size={15} style={{ color }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[11px] text-zinc-600 font-medium uppercase tracking-wider">{label}</p>
-                    <p className="text-sm text-zinc-200 font-medium mt-0.5 truncate">{value || '—'}</p>
+                    <p className="text-[11px] text-stone-500 font-semibold uppercase tracking-wider">{label}</p>
+                    <p className="text-sm text-[#1c1917] font-semibold mt-0.5 truncate">{value || '—'}</p>
                   </div>
                 </div>
               ))}
@@ -229,73 +229,73 @@ const ProfilePage = () => {
         <div
           className="rounded-2xl p-5 mb-5 animate-fade-in"
           style={{
-            background: 'rgba(255,255,255,0.02)',
-            border: '1px solid rgba(255,255,255,0.06)',
-            backdropFilter: 'blur(12px)',
+            background: '#ffffff',
+            border: '1px solid #e7e0d3',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.02)',
           }}
         >
-          <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3 flex items-center gap-1.5">
-            <Lock size={12} className="text-violet-400" /> Security
+          <h3 className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+            <Lock size={12} className="text-amber-600" /> Security
           </h3>
 
           {!showPasswordModal ? (
             <button
               onClick={() => setShowPasswordModal(true)}
-              className="flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm font-medium text-zinc-300 hover:text-white transition-all duration-200"
+              className="flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm font-semibold text-[#1c1917] hover:text-[#000000] transition-all duration-200"
               style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.06)',
+                background: '#fbf9f4',
+                border: '1px solid #e7e0d3',
               }}
             >
               <div className="flex items-center gap-3">
                 <div
                   className="w-8 h-8 rounded-xl flex items-center justify-center"
-                  style={{ background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.2)' }}
+                  style={{ background: '#fef3c7', border: '1px solid #fde68a' }}
                 >
-                  <KeyRound size={14} className="text-violet-400" />
+                  <KeyRound size={14} className="text-amber-700" />
                 </div>
                 <span>Change Password</span>
               </div>
-              <span className="text-xs text-violet-400 font-semibold">Update →</span>
+              <span className="text-xs text-amber-700 font-bold">Update →</span>
             </button>
           ) : (
             <form onSubmit={handleChangePassword} className="space-y-3 pt-1">
               {pwdError && (
-                <div className="p-3 rounded-xl text-xs text-red-400 bg-red-500/10 border border-red-500/20">
+                <div className="p-3 rounded-xl text-xs text-red-700 bg-red-50 border border-red-200">
                   {pwdError}
                 </div>
               )}
               <div>
-                <label className="block text-xs font-semibold text-zinc-400 mb-1">Current Password</label>
+                <label className="block text-xs font-semibold text-stone-600 mb-1">Current Password</label>
                 <input
                   type="password"
                   placeholder="••••••••"
                   value={currentPwd}
                   onChange={(e) => setCurrentPwd(e.target.value)}
                   required
-                  className="w-full px-3 py-2 rounded-xl text-sm bg-white/[0.04] border border-white/[0.08] text-white focus:outline-none focus:border-violet-500/50"
+                  className="w-full px-3 py-2 rounded-xl text-sm bg-white border border-[#e7e0d3] text-[#1c1917] focus:outline-none focus:border-amber-600"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-zinc-400 mb-1">New Password</label>
+                <label className="block text-xs font-semibold text-stone-600 mb-1">New Password</label>
                 <input
                   type="password"
                   placeholder="Min. 6 characters"
                   value={newPwd}
                   onChange={(e) => setNewPwd(e.target.value)}
                   required
-                  className="w-full px-3 py-2 rounded-xl text-sm bg-white/[0.04] border border-white/[0.08] text-white focus:outline-none focus:border-violet-500/50"
+                  className="w-full px-3 py-2 rounded-xl text-sm bg-white border border-[#e7e0d3] text-[#1c1917] focus:outline-none focus:border-amber-600"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-zinc-400 mb-1">Confirm New Password</label>
+                <label className="block text-xs font-semibold text-stone-600 mb-1">Confirm New Password</label>
                 <input
                   type="password"
                   placeholder="Repeat new password"
                   value={confirmPwd}
                   onChange={(e) => setConfirmPwd(e.target.value)}
                   required
-                  className="w-full px-3 py-2 rounded-xl text-sm bg-white/[0.04] border border-white/[0.08] text-white focus:outline-none focus:border-violet-500/50"
+                  className="w-full px-3 py-2 rounded-xl text-sm bg-white border border-[#e7e0d3] text-[#1c1917] focus:outline-none focus:border-amber-600"
                 />
               </div>
               <div className="flex gap-2 pt-2">
@@ -322,50 +322,48 @@ const ProfilePage = () => {
         <div
           className="rounded-2xl p-5 animate-fade-in"
           style={{
-            background: 'rgba(255,255,255,0.02)',
-            border: '1px solid rgba(255,255,255,0.06)',
-            backdropFilter: 'blur(12px)',
+            background: '#ffffff',
+            border: '1px solid #e7e0d3',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.02)',
           }}
         >
-          <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-4 flex items-center gap-1.5">
+          <h3 className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-4 flex items-center gap-1.5">
             <Clock size={11} /> Account Actions
           </h3>
 
           {!confirmLogout ? (
             <button
               onClick={() => setConfirmLogout(true)}
-              className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-all duration-200"
+              className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-semibold text-stone-700 hover:text-stone-900 transition-all duration-200"
               style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.06)',
+                background: '#fbf9f4',
+                border: '1px solid #e7e0d3',
               }}
             >
               <div
                 className="w-8 h-8 rounded-xl flex items-center justify-center"
-                style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.15)' }}
+                style={{ background: '#fef2f2', border: '1px solid #fecaca' }}
               >
-                <LogOut size={14} className="text-red-400" />
+                <LogOut size={14} className="text-red-700" />
               </div>
               Sign out of DocMind AI
             </button>
           ) : (
             <div
               className="p-4 rounded-xl animate-scale-in"
-              style={{ background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.15)' }}
+              style={{ background: '#fef2f2', border: '1px solid #fecaca' }}
             >
-              <p className="text-sm text-zinc-300 mb-3">Are you sure you want to sign out?</p>
+              <p className="text-sm text-red-900 font-semibold mb-3">Are you sure you want to sign out?</p>
               <div className="flex gap-2">
                 <button
                   onClick={handleLogout}
-                  className="flex-1 py-2 rounded-xl text-sm font-semibold text-red-300 transition-all"
-                  style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.25)' }}
+                  className="flex-1 py-2 rounded-xl text-sm font-semibold text-white transition-all bg-red-600 hover:bg-red-700"
                 >
                   Yes, sign out
                 </button>
                 <button
                   onClick={() => setConfirmLogout(false)}
-                  className="flex-1 py-2 rounded-xl text-sm font-medium text-zinc-400 transition-all"
-                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
+                  className="flex-1 py-2 rounded-xl text-sm font-semibold text-stone-700 transition-all bg-white border border-[#e7e0d3]"
                 >
                   Cancel
                 </button>
@@ -376,8 +374,8 @@ const ProfilePage = () => {
 
         {/* Footer note */}
         <div className="flex items-center justify-center gap-2 mt-8">
-          <Sparkles size={11} className="text-zinc-700" />
-          <p className="text-center text-xs text-zinc-700">
+          <Sparkles size={11} className="text-stone-400" />
+          <p className="text-center text-xs text-stone-500 font-medium">
             DocMind AI · Powered by Gemini & MongoDB Atlas
           </p>
         </div>

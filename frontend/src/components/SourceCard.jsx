@@ -4,40 +4,22 @@ const SourceCard = ({ source, index }) => (
   <a
     href={`#source-${index}`}
     title={`${source.fileName} — Page ${source.pageNumber}`}
-    className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all duration-200 text-left w-auto max-w-full group"
-    style={{
-      background: 'rgba(139,92,246,0.06)',
-      border: '1px solid rgba(139,92,246,0.15)',
-    }}
-    onMouseEnter={e => {
-      e.currentTarget.style.background = 'rgba(139,92,246,0.12)';
-      e.currentTarget.style.borderColor = 'rgba(139,92,246,0.3)';
-      e.currentTarget.style.transform = 'translateY(-1px)';
-      e.currentTarget.style.boxShadow = '0 4px 12px rgba(109,40,217,0.2)';
-    }}
-    onMouseLeave={e => {
-      e.currentTarget.style.background = 'rgba(139,92,246,0.06)';
-      e.currentTarget.style.borderColor = 'rgba(139,92,246,0.15)';
-      e.currentTarget.style.transform = '';
-      e.currentTarget.style.boxShadow = '';
-    }}
+    className="flex items-center gap-2.5 px-3 py-2 rounded-lg transition-all duration-200 text-left w-auto max-w-full group bg-white border border-[#e7e0d3] hover:border-amber-500/40 hover:bg-[#fef3c7]/40 shadow-2xs"
   >
     <div
-      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-      style={{ background: 'rgba(139,92,246,0.15)', border: '1px solid rgba(139,92,246,0.2)' }}
+      className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 bg-amber-50 border border-amber-200 text-amber-700"
     >
-      <FileText size={12} className="text-violet-400" />
+      <FileText size={12} />
     </div>
     <div className="min-w-0">
-      <p className="text-[11px] font-semibold text-zinc-300 truncate max-w-[160px] leading-snug">
+      <p className="text-[11px] font-semibold text-[#1c1917] truncate max-w-[160px] leading-snug">
         {source.fileName}
       </p>
-      <p className="text-[10px] text-zinc-600 mt-0.5">Page {source.pageNumber}</p>
+      <p className="text-[10px] text-stone-500">Page {source.pageNumber}</p>
     </div>
     {source.score !== undefined && (
       <span
-        className="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded-md flex-shrink-0"
-        style={{ background: 'rgba(139,92,246,0.12)', color: '#c4b5fd' }}
+        className="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded-md flex-shrink-0 bg-[#fef3c7] text-[#b45309] border border-[#fde68a]"
       >
         {(source.score * 100).toFixed(0)}%
       </span>
@@ -46,3 +28,4 @@ const SourceCard = ({ source, index }) => (
 );
 
 export default SourceCard;
+

@@ -5,44 +5,157 @@ import {
   FileText, UploadCloud, ChevronDown, Check, Clock, Settings,
   X, Send, Bot, User, MoreVertical, Lock, Cpu, Volume2, Mic,
   Layers, CheckCircle2, Star, Github, Globe, CornerDownLeft,
-  LayoutDashboard, LogOut, Menu, HelpCircle, FolderOpen, ExternalLink
+  LayoutDashboard, LogOut, Menu, HelpCircle, FolderOpen, ExternalLink,
+  Sun, Moon, Palette
 } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 import toast from 'react-hot-toast';
 import AuthModal from '../components/AuthModal';
 
-/* ─── Neural Brain Logo SVG ─────────────────────────────── */
+const themeStyles = {
+  dark: {
+    bg: '#08090d',
+    bgImage: `
+      radial-gradient(ellipse 70% 45% at 50% -5%, rgba(56,189,248,0.08), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 15% 20%, rgba(99,102,241,0.07), transparent 65%),
+      linear-gradient(180deg, #08090d 0%, #0b0d14 50%, #08090d 100%)
+    `,
+    textPrimary: '#f8fafc',
+    textSecondary: '#94a3b8',
+    headingGrad: 'linear-gradient(135deg, #f8fafc 0%, #cbd5e1 45%, #60a5fa 100%)',
+    brandText: '#ffffff',
+    brandAccent: '#38bdf8',
+    pillBg: 'rgba(56,189,248,0.06)',
+    pillBorder: 'rgba(56,189,248,0.2)',
+    pillText: '#38bdf8',
+    btnPrimaryBg: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+    btnPrimaryShadow: '0 8px 24px rgba(37,99,235,0.35)',
+    btnSecondaryBg: 'rgba(255,255,255,0.03)',
+    btnSecondaryBorder: 'rgba(255,255,255,0.12)',
+    btnSecondaryText: '#ffffff',
+    switcherBg: 'rgba(255,255,255,0.06)',
+    switcherBorder: 'rgba(255,255,255,0.12)',
+    cardBg: 'rgba(255,255,255,0.02)',
+    cardBorder: 'rgba(255,255,255,0.06)',
+    mockupOuter: 'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(56,189,248,0.15) 50%, rgba(255,255,255,0.04) 100%)',
+    mockupOuterBg: '#0c0f17',
+    mockupHeaderBg: '#090c13',
+    mockupGridBg: '#080a11',
+    mockupSidebarBg: '#090c14',
+    mockupDocBg: '#0a0d16',
+    mockupChatBg: '#0b0e17',
+    mockupUserBubble: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+    mockupAiBubble: 'rgba(255,255,255,0.035)',
+    mockupAiBubbleText: '#e2e8f0',
+    sectionBorder: 'rgba(255,255,255,0.05)',
+    footerText: 'rgba(255,255,255,0.4)',
+    menuBg: '#0d111a',
+  },
+  beige: {
+    bg: '#fbf9f4',
+    bgImage: `
+      radial-gradient(ellipse 70% 45% at 50% -5%, rgba(217,119,6,0.08), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 15% 20%, rgba(180,83,9,0.06), transparent 65%),
+      linear-gradient(180deg, #fbf9f4 0%, #f4f0e6 50%, #fbf9f4 100%)
+    `,
+    textPrimary: '#1c1917',
+    textSecondary: '#57534e',
+    headingGrad: 'linear-gradient(135deg, #1c1917 0%, #44403c 45%, #b45309 100%)',
+    brandText: '#1c1917',
+    brandAccent: '#d97706',
+    pillBg: 'rgba(217,119,6,0.09)',
+    pillBorder: 'rgba(217,119,6,0.25)',
+    pillText: '#b45309',
+    btnPrimaryBg: 'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
+    btnPrimaryShadow: '0 8px 24px rgba(217,119,6,0.25)',
+    btnSecondaryBg: 'rgba(0,0,0,0.03)',
+    btnSecondaryBorder: 'rgba(0,0,0,0.12)',
+    btnSecondaryText: '#1c1917',
+    switcherBg: '#ede8dd',
+    switcherBorder: 'rgba(0,0,0,0.1)',
+    cardBg: '#ffffff',
+    cardBorder: 'rgba(0,0,0,0.08)',
+    mockupOuter: 'linear-gradient(135deg, rgba(217,119,6,0.2) 0%, rgba(180,83,9,0.15) 50%, rgba(0,0,0,0.06) 100%)',
+    mockupOuterBg: '#ffffff',
+    mockupHeaderBg: '#f4f0e6',
+    mockupGridBg: '#fbf9f4',
+    mockupSidebarBg: '#f1ede4',
+    mockupDocBg: '#f4f0e6',
+    mockupChatBg: '#fbf9f4',
+    mockupUserBubble: 'linear-gradient(135deg, #d97706, #b45309)',
+    mockupAiBubble: '#ede8dd',
+    mockupAiBubbleText: '#292524',
+    sectionBorder: 'rgba(0,0,0,0.08)',
+    footerText: '#78716c',
+    menuBg: '#ffffff',
+  },
+  white: {
+    bg: '#ffffff',
+    bgImage: `
+      radial-gradient(ellipse 70% 45% at 50% -5%, rgba(37,99,235,0.06), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 85% 30%, rgba(56,189,248,0.05), transparent 65%),
+      linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%)
+    `,
+    textPrimary: '#0f172a',
+    textSecondary: '#475569',
+    headingGrad: 'linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #2563eb 100%)',
+    brandText: '#0f172a',
+    brandAccent: '#2563eb',
+    pillBg: 'rgba(37,99,235,0.08)',
+    pillBorder: 'rgba(37,99,235,0.22)',
+    pillText: '#2563eb',
+    btnPrimaryBg: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+    btnPrimaryShadow: '0 8px 24px rgba(37,99,235,0.25)',
+    btnSecondaryBg: 'rgba(0,0,0,0.03)',
+    btnSecondaryBorder: 'rgba(0,0,0,0.12)',
+    btnSecondaryText: '#0f172a',
+    switcherBg: '#f1f5f9',
+    switcherBorder: 'rgba(0,0,0,0.1)',
+    cardBg: '#ffffff',
+    cardBorder: 'rgba(0,0,0,0.08)',
+    mockupOuter: 'linear-gradient(135deg, rgba(37,99,235,0.18) 0%, rgba(56,189,248,0.12) 50%, rgba(0,0,0,0.05) 100%)',
+    mockupOuterBg: '#ffffff',
+    mockupHeaderBg: '#f8fafc',
+    mockupGridBg: '#ffffff',
+    mockupSidebarBg: '#f1f5f9',
+    mockupDocBg: '#f8fafc',
+    mockupChatBg: '#ffffff',
+    mockupUserBubble: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+    mockupAiBubble: '#f1f5f9',
+    mockupAiBubbleText: '#1e293b',
+    sectionBorder: 'rgba(0,0,0,0.07)',
+    footerText: '#64748b',
+    menuBg: '#ffffff',
+  }
+};
+
+/* ─── Geometric Modern Neural Node Logo SVG ─────────────────────────────── */
 export function BrainLogo({ size = 28 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
-      <path
-        d="M16 4C11.5817 4 8 7.58172 8 12C8 13.3103 8.31494 14.5471 8.87326 15.6387C6.01026 16.9248 4 19.7428 4 23.0001C4 27.4184 7.58172 31.0001 12 31.0001C13.0645 31.0001 14.0792 30.7918 15.0062 30.4137C15.3262 30.5843 15.6888 30.6801 16.0714 30.6801C16.454 30.6801 16.8166 30.5843 17.1366 30.4137C18.0636 30.7918 19.0783 31.0001 20.1428 31.0001C24.5611 31.0001 28.1428 27.4184 28.1428 23.0001C28.1428 19.7428 26.1325 16.9248 23.2695 15.6387C23.8278 14.5471 24.1428 13.3103 24.1428 12C24.1428 7.58172 20.5611 4 16.1428 4H16Z"
-        fill="url(#brain_glow_grad)"
-        fillOpacity="0.25"
-      />
-      <path
-        d="M12 7C9.23858 7 7 9.23858 7 12C7 13.078 7.34149 14.0762 7.92212 14.8931C6.15582 15.9329 5 17.8488 5 20.0001C5 23.3138 7.68629 26.0001 11 26.0001C11.6934 26.0001 12.3551 25.8824 12.9697 25.6664M20 7C22.7614 7 25 9.23858 25 12C25 13.078 24.6585 14.0762 24.0779 14.8931C25.8442 15.9329 27 17.8488 27 20.0001C27 23.3138 24.3137 26.0001 21 26.0001C20.3066 26.0001 19.6449 25.8824 19.0303 25.6664"
-        stroke="url(#brain_stroke_grad)"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16 5V27M12 11H14.5C15.3284 11 16 11.6716 16 12.5C16 13.3284 15.3284 14 14.5 14H12M20 11H17.5C16.6716 11 16 11.6716 16 12.5C16 13.3284 16.6716 14 17.5 14H20M11 19H13.5C14.8807 19 16 17.8807 16 16.5C16 15.1193 14.8807 14 13.5 14M21 19H18.5C17.1193 19 16 17.8807 16 16.5C16 15.1193 17.1193 14 18.5 14M12.5 23H14C15.1046 23 16 22.1046 16 21M19.5 23H18C16.8954 23 16 22.1046 16 21"
-        stroke="url(#brain_stroke_grad)"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width={size} height={size} viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+      {/* Container Badge */}
+      <rect x="2" y="2" width="32" height="32" rx="10" fill="url(#neural_badge_grad)" stroke="#fde68a" strokeWidth="1.2" />
+      
+      {/* Interconnected Neural Network Nodes */}
+      <line x1="12" y1="12" x2="24" y2="12" stroke="url(#neural_line_grad)" strokeWidth="2" strokeLinecap="round" />
+      <line x1="12" y1="12" x2="18" y2="24" stroke="url(#neural_line_grad)" strokeWidth="2" strokeLinecap="round" />
+      <line x1="24" y1="12" x2="18" y2="24" stroke="url(#neural_line_grad)" strokeWidth="2" strokeLinecap="round" />
+      <line x1="18" y1="12" x2="18" y2="24" stroke="url(#neural_line_grad)" strokeWidth="1.8" strokeDasharray="2 2" />
+
+      {/* Nodes */}
+      <circle cx="12" cy="12" r="3" fill="#d97706" stroke="#ffffff" strokeWidth="1.5" />
+      <circle cx="24" cy="12" r="3" fill="#b45309" stroke="#ffffff" strokeWidth="1.5" />
+      <circle cx="18" cy="24" r="3.5" fill="#d97706" stroke="#ffffff" strokeWidth="1.5" />
+      <circle cx="18" cy="12" r="2" fill="#ffffff" />
+
       <defs>
-        <linearGradient id="brain_stroke_grad" x1="5" y1="5" x2="27" y2="27" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#60a5fa" />
-          <stop offset="0.5" stopColor="#818cf8" />
-          <stop offset="1" stopColor="#c084fc" />
+        <linearGradient id="neural_badge_grad" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#fef3c7" />
+          <stop offset="1" stopColor="#fde68a" />
         </linearGradient>
-        <linearGradient id="brain_glow_grad" x1="4" y1="4" x2="28" y2="31" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#3b82f6" />
-          <stop offset="1" stopColor="#8b5cf6" />
+        <linearGradient id="neural_line_grad" x1="12" y1="12" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#d97706" />
+          <stop offset="1" stopColor="#b45309" />
         </linearGradient>
       </defs>
     </svg>
@@ -61,6 +174,8 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const fileInputRef = useRef(null);
   const userDropdownRef = useRef(null);
+
+  const t = themeStyles.beige;
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -190,17 +305,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
   return (
     <div style={{
       minHeight: '100vh',
-      backgroundColor: '#08090d',
-      backgroundImage: `
-        radial-gradient(ellipse 70% 45% at 50% -5%, rgba(56,189,248,0.08), transparent 70%),
-        radial-gradient(ellipse 60% 40% at 15% 20%, rgba(99,102,241,0.07), transparent 65%),
-        radial-gradient(ellipse 50% 40% at 85% 60%, rgba(59,130,246,0.06), transparent 60%),
-        linear-gradient(180deg, #08090d 0%, #0b0d14 50%, #08090d 100%)
-      `,
-      color: '#f8fafc',
+      backgroundColor: t.bg,
+      backgroundImage: t.bgImage,
+      color: t.textPrimary,
       fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       position: 'relative',
       overflow: 'visible',
+      transition: 'background-color 0.3s ease, color 0.3s ease',
     }}>
 
       <input
@@ -218,7 +329,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
         left: '-5%',
         width: '50%',
         height: '40%',
-        background: 'radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, rgba(15,23,42,0.3) 50%, transparent 70%)',
+        background: 'radial-gradient(ellipse, rgba(217,119,6,0.12) 0%, rgba(245,242,233,0.3) 50%, transparent 70%)',
         filter: 'blur(100px)',
         pointerEvents: 'none',
         zIndex: 0,
@@ -227,7 +338,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
       {/* ═══════════════════════════════════════════════════════════
           NAVBAR (COMPREHENSIVE PROFESSIONAL SAAS HEADER)
           ═══════════════════════════════════════════════════════════ */}
-      <header style={{
+      <header className="landing-header" style={{
         position: 'relative',
         zIndex: 40,
         maxWidth: '1440px',
@@ -263,18 +374,17 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
             display: 'flex',
             alignItems: 'center',
           }}>
-            <span style={{ color: '#ffffff' }}>DocMind</span>
+            <span style={{ color: t.brandText }}>DocMind</span>
             <span style={{
               marginLeft: '4px',
-              background: 'linear-gradient(135deg, #60a5fa, #a855f7)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              color: t.brandAccent,
             }}>AI</span>
           </div>
         </div>
 
-        {/* Right Auth Action (Dual Sign In + Get Started or User Menu) */}
+        {/* Right Header Actions (Auth / Dashboard Buttons) */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', position: 'relative' }}>
               {/* Dashboard Shortcut Button */}
@@ -286,14 +396,14 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   gap: '7px',
                   padding: '9px 18px',
                   borderRadius: '11px',
-                  background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                  background: t.btnPrimaryBg,
                   border: 'none',
                   color: '#ffffff',
                   fontSize: '13.5px',
                   fontWeight: 600,
                   cursor: 'pointer',
                   transition: 'all .2s ease',
-                  boxShadow: '0 4px 14px rgba(99,102,241,0.4)',
+                  boxShadow: t.btnPrimaryShadow,
                 }}
                 onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
                 onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
@@ -312,19 +422,17 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                     gap: '8px',
                     padding: '5px 10px 5px 6px',
                     borderRadius: '999px',
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.12)',
+                    background: t.btnSecondaryBg,
+                    border: `1px solid ${t.btnSecondaryBorder}`,
                     cursor: 'pointer',
                     transition: 'all .2s',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(99,102,241,0.5)'}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'}
                 >
                   <div style={{
                     width: '28px',
                     height: '28px',
                     borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #818cf8, #c084fc)',
+                    background: 'linear-gradient(135deg, #3b82f6, #6366f1)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -334,10 +442,10 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   }}>
                     {user?.name ? user.name[0].toUpperCase() : 'U'}
                   </div>
-                  <span style={{ fontSize: '13px', fontWeight: 600, color: 'white', maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} className="hidden sm:inline">
+                  <span style={{ fontSize: '13px', fontWeight: 600, color: t.textPrimary, maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} className="hidden sm:inline">
                     {user?.name?.split(' ')[0] || 'Account'}
                   </span>
-                  <ChevronDown size={13} color="rgba(255,255,255,0.6)" />
+                  <ChevronDown size={13} color={t.textSecondary} />
                 </div>
 
                 {/* User Floating Profile Menu */}
@@ -348,16 +456,16 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                     right: '0',
                     width: '230px',
                     borderRadius: '16px',
-                    background: '#0d111a',
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    background: t.menuBg,
+                    border: `1px solid ${t.cardBorder}`,
                     padding: '8px',
-                    boxShadow: '0 20px 45px rgba(0,0,0,0.8)',
+                    boxShadow: '0 20px 45px rgba(0,0,0,0.25)',
                     backdropFilter: 'blur(20px)',
                     zIndex: 50,
                   }}>
-                    <div style={{ padding: '8px 12px 10px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-                      <div style={{ fontSize: '13px', fontWeight: 700, color: 'white' }}>{user.name}</div>
-                      <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.45)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    <div style={{ padding: '8px 12px 10px', borderBottom: `1px solid ${t.cardBorder}` }}>
+                      <div style={{ fontSize: '13px', fontWeight: 700, color: t.textPrimary }}>{user.name}</div>
+                      <div style={{ fontSize: '11px', color: t.textSecondary, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {user.email}
                       </div>
                     </div>
@@ -365,30 +473,24 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                     <div style={{ padding: '6px 0' }}>
                       <div
                         onClick={() => { setUserDropdownOpen(false); navigate('/dashboard'); }}
-                        style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', borderRadius: '8px', fontSize: '13px', color: 'rgba(255,255,255,0.8)', cursor: 'pointer', transition: 'background .15s' }}
-                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
-                        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                        style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', borderRadius: '8px', fontSize: '13px', color: t.textPrimary, cursor: 'pointer', transition: 'background .15s' }}
                       >
-                        <LayoutDashboard size={14} color="#818cf8" />
+                        <LayoutDashboard size={14} color="#3b82f6" />
                         My Documents
                       </div>
                       <div
                         onClick={() => { setUserDropdownOpen(false); navigate('/profile'); }}
-                        style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', borderRadius: '8px', fontSize: '13px', color: 'rgba(255,255,255,0.8)', cursor: 'pointer', transition: 'background .15s' }}
-                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
-                        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                        style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', borderRadius: '8px', fontSize: '13px', color: t.textPrimary, cursor: 'pointer', transition: 'background .15s' }}
                       >
                         <Settings size={14} color="#38bdf8" />
                         Account Settings
                       </div>
                     </div>
 
-                    <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: '4px' }}>
+                    <div style={{ borderTop: `1px solid ${t.cardBorder}`, paddingTop: '4px' }}>
                       <div
                         onClick={handleUserLogout}
                         style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', borderRadius: '8px', fontSize: '13px', color: '#f87171', cursor: 'pointer', transition: 'background .15s' }}
-                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(239,68,68,0.1)'}
-                        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                       >
                         <LogOut size={14} />
                         Sign Out
@@ -406,22 +508,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 style={{
                   padding: '9px 18px',
                   borderRadius: '10px',
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.16)',
-                  color: '#ffffff',
+                  background: t.btnSecondaryBg,
+                  border: `1px solid ${t.btnSecondaryBorder}`,
+                  color: t.btnSecondaryText,
                   fontSize: '13.5px',
                   fontWeight: 600,
                   cursor: 'pointer',
                   transition: 'all .2s ease',
-                  backdropFilter: 'blur(10px)',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.09)';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.16)';
                 }}
               >
                 Sign In
@@ -436,22 +529,14 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   gap: '6px',
                   padding: '9px 18px',
                   borderRadius: '10px',
-                  background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                  background: t.btnPrimaryBg,
                   border: 'none',
                   color: '#ffffff',
                   fontSize: '13.5px',
                   fontWeight: 600,
                   cursor: 'pointer',
                   transition: 'all .2s ease',
-                  boxShadow: '0 4px 14px rgba(99,102,241,0.35)',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-1px)';
-                  e.currentTarget.style.boxShadow = '0 6px 18px rgba(99,102,241,0.5)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(99,102,241,0.35)';
+                  boxShadow: t.btnPrimaryShadow,
                 }}
               >
                 Get Started
@@ -471,9 +556,9 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               width: '36px',
               height: '36px',
               borderRadius: '8px',
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              color: 'white',
+              background: t.btnSecondaryBg,
+              border: `1px solid ${t.btnSecondaryBorder}`,
+              color: t.textPrimary,
               cursor: 'pointer',
               marginLeft: '4px',
             }}
@@ -490,10 +575,10 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
             left: '24px',
             right: '24px',
             borderRadius: '18px',
-            background: '#0c0f18',
-            border: '1px solid rgba(255,255,255,0.12)',
+            background: t.menuBg,
+            border: `1px solid ${t.cardBorder}`,
             padding: '20px',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.8)',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.2)',
             display: 'flex',
             flexDirection: 'column',
             gap: '14px',
@@ -501,24 +586,24 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
           }}>
             <div
               onClick={() => { setMobileMenuOpen(false); scrollToSection('features'); }}
-              style={{ fontSize: '15px', fontWeight: 600, color: 'white', cursor: 'pointer', padding: '8px 0' }}
+              style={{ fontSize: '15px', fontWeight: 600, color: t.textPrimary, cursor: 'pointer', padding: '8px 0' }}
             >
               Features
             </div>
             <div
               onClick={() => { setMobileMenuOpen(false); scrollToSection('security'); }}
-              style={{ fontSize: '15px', fontWeight: 600, color: 'white', cursor: 'pointer', padding: '8px 0' }}
+              style={{ fontSize: '15px', fontWeight: 600, color: t.textPrimary, cursor: 'pointer', padding: '8px 0' }}
             >
               Security
             </div>
             <div
               onClick={() => { setMobileMenuOpen(false); scrollToSection('pricing'); }}
-              style={{ fontSize: '15px', fontWeight: 600, color: 'white', cursor: 'pointer', padding: '8px 0' }}
+              style={{ fontSize: '15px', fontWeight: 600, color: t.textPrimary, cursor: 'pointer', padding: '8px 0' }}
             >
               Pricing
             </div>
 
-            <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <div style={{ borderTop: `1px solid ${t.cardBorder}`, paddingTop: '14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {user ? (
                 <button
                   onClick={() => { setMobileMenuOpen(false); navigate('/dashboard'); }}
@@ -526,7 +611,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                     width: '100%',
                     padding: '12px',
                     borderRadius: '10px',
-                    background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                    background: t.btnPrimaryBg,
                     border: 'none',
                     color: 'white',
                     fontWeight: 700,
@@ -543,9 +628,9 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                       width: '100%',
                       padding: '11px',
                       borderRadius: '10px',
-                      background: 'rgba(255,255,255,0.06)',
-                      border: '1px solid rgba(255,255,255,0.15)',
-                      color: 'white',
+                      background: t.btnSecondaryBg,
+                      border: `1px solid ${t.btnSecondaryBorder}`,
+                      color: t.textPrimary,
                       fontWeight: 600,
                       fontSize: '14px',
                     }}
@@ -558,7 +643,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                       width: '100%',
                       padding: '11px',
                       borderRadius: '10px',
-                      background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                      background: t.btnPrimaryBg,
                       border: 'none',
                       color: 'white',
                       fontWeight: 700,
@@ -577,7 +662,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
       {/* ═══════════════════════════════════════════════════════════
           HERO MAIN (EXACT IMAGE REPLICA)
           ═══════════════════════════════════════════════════════════ */}
-      <main style={{
+      <main className="landing-main-container" style={{
         position: 'relative',
         zIndex: 10,
         maxWidth: '1440px',
@@ -600,51 +685,49 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               alignItems: 'center',
               gap: '6px',
               width: 'fit-content',
-              padding: '6px 14px',
+              padding: '5px 12px',
               borderRadius: '999px',
-              background: 'rgba(56,189,248,0.06)',
-              border: '1px solid rgba(56,189,248,0.2)',
-              color: '#38bdf8',
+              background: t.pillBg,
+              border: `1px solid ${t.pillBorder}`,
+              color: t.pillText,
               fontSize: '11px',
-              fontWeight: 700,
-              letterSpacing: '1px',
+              fontWeight: 600,
+              letterSpacing: '0.5px',
               textTransform: 'uppercase',
-              marginBottom: '28px',
-              boxShadow: '0 0 16px rgba(56,189,248,0.08)',
-              backdropFilter: 'blur(8px)',
+              marginBottom: '20px',
             }}>
-              <Sparkles size={12} color="#38bdf8" /> AI PDF CHAT
+              <FileText size={12} color={t.pillText} /> Document Intelligence Platform
             </div>
 
             {/* Main Headline */}
             <h1 style={{
-              fontSize: 'clamp(42px, 4.8vw, 64px)',
-              fontWeight: 900,
-              lineHeight: 1.08,
-              letterSpacing: '-2px',
-              margin: '0 0 24px 0',
+              fontSize: 'clamp(36px, 4vw, 54px)',
+              fontWeight: 800,
+              lineHeight: 1.12,
+              letterSpacing: '-1.5px',
+              margin: '0 0 20px 0',
             }}>
-              <span style={{ color: '#ffffff', display: 'block' }}>Chat with</span>
+              <span style={{ color: t.textPrimary, display: 'block' }}>Instant insights from</span>
               <span style={{
                 display: 'inline-block',
-                background: 'linear-gradient(135deg, #f8fafc 0%, #cbd5e1 45%, #60a5fa 100%)',
+                background: t.headingGrad,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}>
-                your documents.
+                your PDF documents.
               </span>
             </h1>
 
             {/* Subheading */}
             <p style={{
-              fontSize: '16.5px',
-              lineHeight: 1.65,
-              color: '#94a3b8',
+              fontSize: '16px',
+              lineHeight: 1.6,
+              color: t.textSecondary,
               maxWidth: '480px',
-              margin: '0 0 36px 0',
+              margin: '0 0 32px 0',
               fontWeight: 400,
             }}>
-              Upload your PDFs and ask questions. DocMind AI reads your documents and gives you accurate, context-aware <span style={{ color: '#f8fafc', fontWeight: 600 }}>answers</span> — instantly.
+              Upload a PDF, ask questions, and get accurate answers grounded directly in your document with exact page citations.
             </p>
 
             {/* CTA Buttons */}
@@ -663,22 +746,14 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   gap: '8px',
                   padding: '14px 28px',
                   borderRadius: '13px',
-                  background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                  background: t.btnPrimaryBg,
                   color: '#ffffff',
                   fontSize: '15px',
                   fontWeight: 700,
                   border: 'none',
                   cursor: 'pointer',
-                  boxShadow: '0 8px 24px rgba(37,99,235,0.35), inset 0 1px 0 rgba(255,255,255,0.25)',
+                  boxShadow: t.btnPrimaryShadow,
                   transition: 'all .25s ease',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(37,99,235,0.5), inset 0 1px 0 rgba(255,255,255,0.3)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(37,99,235,0.35), inset 0 1px 0 rgba(255,255,255,0.25)';
                 }}
               >
                 Get Started Free <ArrowRight size={17} />
@@ -692,34 +767,26 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   gap: '10px',
                   padding: '13px 24px',
                   borderRadius: '13px',
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.12)',
-                  color: '#ffffff',
+                  background: t.btnSecondaryBg,
+                  border: `1px solid ${t.btnSecondaryBorder}`,
+                  color: t.btnSecondaryText,
                   fontSize: '14.5px',
                   fontWeight: 600,
                   cursor: 'pointer',
                   transition: 'all .2s ease',
                   backdropFilter: 'blur(10px)',
                 }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.07)';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
-                }}
               >
                 <div style={{
                   width: '22px',
                   height: '22px',
                   borderRadius: '50%',
-                  background: 'rgba(255,255,255,0.1)',
+                  background: 'rgba(0,0,0,0.06)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                  <Play size={10} fill="white" style={{ marginLeft: '1px' }} />
+                  <Play size={10} fill={t.btnSecondaryText} style={{ marginLeft: '1px' }} />
                 </div>
                 See how it works
               </button>
@@ -735,10 +802,10 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               {/* Feature 1 */}
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                  <Zap size={16} color="#38bdf8" />
-                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#f8fafc' }}>Upload PDFs</span>
+                  <Zap size={16} color={t.brandAccent} />
+                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: t.textPrimary }}>Upload PDFs</span>
                 </div>
-                <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8', lineHeight: 1.45 }}>
+                <p style={{ margin: 0, fontSize: '12px', color: t.textSecondary, lineHeight: 1.45 }}>
                   Support for multiple file types and sizes
                 </p>
               </div>
@@ -746,10 +813,10 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               {/* Feature 2 */}
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                  <MessageSquare size={16} color="#38bdf8" />
-                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#f8fafc' }}>Ask Anything</span>
+                  <MessageSquare size={16} color={t.brandAccent} />
+                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: t.textPrimary }}>Ask Anything</span>
                 </div>
-                <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8', lineHeight: 1.45 }}>
+                <p style={{ margin: 0, fontSize: '12px', color: t.textSecondary, lineHeight: 1.45 }}>
                   Get accurate answers from your documents
                 </p>
               </div>
@@ -757,10 +824,10 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               {/* Feature 3 */}
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                  <Shield size={16} color="#38bdf8" />
-                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#f8fafc' }}>Your Data Stays Private</span>
+                  <Shield size={16} color={t.brandAccent} />
+                  <span style={{ fontSize: '13.5px', fontWeight: 700, color: t.textPrimary }}>Your Data Stays Private</span>
                 </div>
-                <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8', lineHeight: 1.45 }}>
+                <p style={{ margin: 0, fontSize: '12px', color: t.textSecondary, lineHeight: 1.45 }}>
                   Secure & encrypted at every step
                 </p>
               </div>
@@ -773,13 +840,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
             position: 'relative',
             borderRadius: '24px',
             padding: '1px',
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(56,189,248,0.15) 50%, rgba(255,255,255,0.04) 100%)',
-            boxShadow: '0 24px 60px rgba(0,0,0,0.7), 0 0 40px rgba(37,99,235,0.1)',
+            background: t.mockupOuter,
+            boxShadow: '0 20px 50px rgba(0,0,0,0.08)',
           }}>
             <div style={{
               borderRadius: '23px',
-              backgroundColor: '#0c0f17',
-              border: '1px solid rgba(255,255,255,0.07)',
+              backgroundColor: t.mockupOuterBg,
+              border: `1px solid ${t.cardBorder}`,
               overflow: 'hidden',
               display: 'flex',
               flexDirection: 'column',
@@ -788,15 +855,15 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               {/* Mockup Top Brand Header */}
               <div style={{
                 padding: '14px 20px',
-                borderBottom: '1px solid rgba(255,255,255,0.06)',
+                borderBottom: `1px solid ${t.cardBorder}`,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
-                background: '#090c13',
+                background: t.mockupHeaderBg,
               }}>
                 <BrainLogo size={22} />
-                <span style={{ fontSize: '14px', fontWeight: 800, color: '#ffffff' }}>DocMind</span>
-                <span style={{ fontSize: '14px', fontWeight: 800, color: '#38bdf8', marginLeft: '-6px' }}>AI</span>
+                <span style={{ fontSize: '14px', fontWeight: 800, color: t.brandText }}>DocMind</span>
+                <span style={{ fontSize: '14px', fontWeight: 800, color: t.brandAccent, marginLeft: '-6px' }}>AI</span>
               </div>
 
               {/* Mockup 3-Pane Body */}
@@ -804,17 +871,17 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 display: 'grid',
                 gridTemplateColumns: '110px 220px 1fr',
                 minHeight: '490px',
-                backgroundColor: '#080a11',
+                backgroundColor: t.mockupGridBg,
               }} className="mockup-grid">
 
                 {/* 1. Left Mini Sidebar */}
                 <div style={{
                   padding: '16px 10px',
-                  borderRight: '1px solid rgba(255,255,255,0.05)',
+                  borderRight: `1px solid ${t.cardBorder}`,
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '6px',
-                  backgroundColor: '#090c14',
+                  backgroundColor: t.mockupSidebarBg,
                 }}>
                   {[
                     { name: 'Chat', icon: MessageSquare },
@@ -840,13 +907,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                           borderRadius: '8px',
                           fontSize: '11.5px',
                           fontWeight: active ? 700 : 500,
-                          color: active ? '#ffffff' : 'rgba(255,255,255,0.4)',
-                          background: active ? 'rgba(37,99,235,0.18)' : 'transparent',
+                          color: active ? t.textPrimary : t.textSecondary,
+                          background: active ? t.pillBg : 'transparent',
                           cursor: 'pointer',
                           transition: 'all .15s ease',
                         }}
                       >
-                        <Icon size={13} color={active ? '#60a5fa' : 'currentColor'} />
+                        <Icon size={13} color={active ? t.brandAccent : 'currentColor'} />
                         {name}
                       </div>
                     );
@@ -856,11 +923,11 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 {/* 2. Middle Document Panel */}
                 <div style={{
                   padding: '14px 12px',
-                  borderRight: '1px solid rgba(255,255,255,0.05)',
+                  borderRight: `1px solid ${t.cardBorder}`,
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '12px',
-                  backgroundColor: '#0a0d16',
+                  backgroundColor: t.mockupDocBg,
                 }}>
                   {/* Top Selected File Pill */}
                   <div
@@ -868,8 +935,8 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                     style={{
                       padding: '8px 10px',
                       borderRadius: '10px',
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(255,255,255,0.08)',
+                      background: t.cardBg,
+                      border: `1px solid ${t.cardBorder}`,
                       display: 'flex',
                       alignItems: 'center',
                       gap: '8px',
@@ -889,19 +956,19 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                       <FileText size={14} color="white" />
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: '11px', fontWeight: 600, color: 'white', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      <div style={{ fontSize: '11px', fontWeight: 600, color: t.textPrimary, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                         Project_Proposal.pdf
                       </div>
-                      <div style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)' }}>24 pages • 2.4 MB</div>
+                      <div style={{ fontSize: '9px', color: t.textSecondary }}>24 pages • 2.4 MB</div>
                     </div>
-                    <MoreVertical size={13} color="rgba(255,255,255,0.3)" />
+                    <MoreVertical size={13} color={t.textSecondary} />
                   </div>
 
                   {/* Drag & Drop Zone */}
                   <div
                     onClick={() => fileInputRef.current?.click()}
                     style={{
-                      border: '1.5px dashed rgba(255,255,255,0.12)',
+                      border: `1.5px dashed ${t.cardBorder}`,
                       borderRadius: '12px',
                       padding: '16px 8px',
                       textAlign: 'center',
@@ -909,34 +976,27 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                       flexDirection: 'column',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      background: 'rgba(255,255,255,0.01)',
+                      background: t.cardBg,
                       cursor: 'pointer',
                       transition: 'all .2s',
                     }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.borderColor = 'rgba(56,189,248,0.4)';
-                      e.currentTarget.style.background = 'rgba(56,189,248,0.03)';
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.01)';
-                    }}
                   >
-                    <UploadCloud size={18} color="rgba(255,255,255,0.5)" style={{ marginBottom: '6px' }} />
-                    <div style={{ fontSize: '10.5px', fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>Drag & drop PDF here</div>
-                    <div style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)', marginTop: '2px' }}>or click to upload</div>
+                    <UploadCloud size={18} color={t.textSecondary} style={{ marginBottom: '6px' }} />
+                    <div style={{ fontSize: '10.5px', fontWeight: 600, color: t.textPrimary }}>Drag & drop PDF here</div>
+                    <div style={{ fontSize: '9px', color: t.textSecondary, marginTop: '2px' }}>or click to upload</div>
                   </div>
 
                   {/* Uploaded Document Section */}
                   <div>
-                    <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 600, marginBottom: '6px' }}>
+                    <div style={{ fontSize: '10px', color: t.textSecondary, textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 600, marginBottom: '6px' }}>
                       Uploaded Document
                     </div>
 
                     <div style={{
                       padding: '7px 8px',
                       borderRadius: '8px',
-                      background: 'rgba(255,255,255,0.03)',
+                      background: t.cardBg,
+                      border: `1px solid ${t.cardBorder}`,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
@@ -947,11 +1007,11 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                           <FileText size={10} color="white" />
                         </div>
                         <div>
-                          <div style={{ fontSize: '10px', fontWeight: 600, color: 'white' }}>Project_Proposal.pdf</div>
-                          <div style={{ fontSize: '8px', color: 'rgba(255,255,255,0.35)' }}>24 pages</div>
+                          <div style={{ fontSize: '10px', fontWeight: 600, color: t.textPrimary }}>Project_Proposal.pdf</div>
+                          <div style={{ fontSize: '8px', color: t.textSecondary }}>24 pages</div>
                         </div>
                       </div>
-                      <X size={11} color="rgba(255,255,255,0.4)" />
+                      <X size={11} color={t.textSecondary} />
                     </div>
 
                     {/* PDF Paper Mockup */}
@@ -961,7 +1021,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                       padding: '12px 10px',
                       color: '#1e293b',
                       fontSize: '8px',
-                      boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                      boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
                       position: 'relative',
                     }}>
                       <div style={{ fontSize: '10px', fontWeight: 800, color: '#0f172a', marginBottom: '4px' }}>
@@ -977,7 +1037,6 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                           <div style={{ height: '3px', background: '#e2e8f0', borderRadius: '2px', marginBottom: '3px', width: '95%' }} />
                           <div style={{ height: '3px', background: '#e2e8f0', borderRadius: '2px', marginBottom: '3px', width: '80%' }} />
                         </div>
-                        {/* Little Building Thumbnail */}
                         <div style={{
                           width: '32px',
                           height: '32px',
@@ -989,7 +1048,6 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                       <div style={{ height: '3px', background: '#e2e8f0', borderRadius: '2px', marginBottom: '3px', width: '95%' }} />
                       <div style={{ height: '3px', background: '#e2e8f0', borderRadius: '2px', marginBottom: '3px', width: '70%' }} />
 
-                      {/* Right Mini Page Tabs inside PDF */}
                       <div style={{
                         position: 'absolute',
                         right: '-6px',
@@ -1026,7 +1084,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  backgroundColor: '#0b0e17',
+                  backgroundColor: t.mockupChatBg,
                 }}>
                   {/* Chat Top Bar */}
                   <div style={{
@@ -1034,19 +1092,19 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     paddingBottom: '10px',
-                    borderBottom: '1px solid rgba(255,255,255,0.05)',
+                    borderBottom: `1px solid ${t.cardBorder}`,
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <div style={{ width: '18px', height: '18px', borderRadius: '50%', background: 'rgba(56,189,248,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <MessageSquare size={10} color="#38bdf8" />
+                      <div style={{ width: '18px', height: '18px', borderRadius: '50%', background: t.pillBg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <MessageSquare size={10} color={t.brandAccent} />
                       </div>
-                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#ffffff' }}>Chat with your document</span>
+                      <span style={{ fontSize: '12px', fontWeight: 700, color: t.textPrimary }}>Chat with your document</span>
                     </div>
                     <div
                       onClick={handleCTA}
-                      style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                      style={{ width: '20px', height: '20px', borderRadius: '50%', background: t.btnSecondaryBg, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
                     >
-                      <User size={11} color="rgba(255,255,255,0.7)" />
+                      <User size={11} color={t.textSecondary} />
                     </div>
                   </div>
 
@@ -1068,35 +1126,35 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                           <div style={{
                             padding: '8px 12px',
                             borderRadius: '12px 12px 2px 12px',
-                            background: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
-                            boxShadow: '0 2px 8px rgba(37,99,235,0.25)',
-                            color: 'white',
+                            background: t.mockupUserBubble,
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                            color: '#ffffff',
                             fontSize: '11px',
                             fontWeight: 500,
                           }}>
                             {m.text}
                           </div>
-                          <div style={{ fontSize: '8.5px', color: 'rgba(255,255,255,0.3)', textAlign: 'right', marginTop: '3px' }}>{m.time}</div>
+                          <div style={{ fontSize: '8.5px', color: t.textSecondary, textAlign: 'right', marginTop: '3px' }}>{m.time}</div>
                         </div>
                       ) : (
                         <div key={m.id} style={{ alignSelf: 'flex-start', maxWidth: '92%', display: 'flex', gap: '8px' }}>
-                          <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(56,189,248,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                            <Bot size={11} color="#38bdf8" />
+                          <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: t.pillBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                            <Bot size={11} color={t.brandAccent} />
                           </div>
                           <div>
                             <div style={{
                               padding: '9px 12px',
                               borderRadius: '2px 12px 12px 12px',
-                              background: 'rgba(255,255,255,0.035)',
-                              border: '1px solid rgba(255,255,255,0.06)',
-                              color: '#e2e8f0',
+                              background: t.mockupAiBubble,
+                              border: `1px solid ${t.cardBorder}`,
+                              color: t.mockupAiBubbleText,
                               fontSize: '10.5px',
                               lineHeight: 1.45,
                               whiteSpace: 'pre-line',
                             }}>
                               {m.text}
                             </div>
-                            <div style={{ fontSize: '8.5px', color: 'rgba(255,255,255,0.3)', marginTop: '3px' }}>{m.time}</div>
+                            <div style={{ fontSize: '8.5px', color: t.textSecondary, marginTop: '3px' }}>{m.time}</div>
                           </div>
                         </div>
                       )
@@ -1109,8 +1167,8 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                       display: 'flex',
                       alignItems: 'center',
                       borderRadius: '10px',
-                      background: 'rgba(255,255,255,0.04)',
-                      border: '1px solid rgba(255,255,255,0.08)',
+                      background: t.btnSecondaryBg,
+                      border: `1px solid ${t.btnSecondaryBorder}`,
                       padding: '4px 6px 4px 12px',
                       gap: '8px',
                     }}>
@@ -1127,7 +1185,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                           background: 'none',
                           border: 'none',
                           outline: 'none',
-                          color: 'white',
+                          color: t.textPrimary,
                           fontSize: '11px',
                           fontFamily: 'inherit',
                         }}
@@ -1138,9 +1196,9 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                           width: '24px',
                           height: '24px',
                           borderRadius: '6px',
-                          background: '#2563eb',
+                          background: t.brandAccent,
                           border: 'none',
-                          color: 'white',
+                          color: '#ffffff',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -1150,7 +1208,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                         <ArrowRight size={13} />
                       </button>
                     </div>
-                    <div style={{ fontSize: '8.5px', color: 'rgba(255,255,255,0.3)', textAlign: 'center', marginTop: '6px' }}>
+                    <div style={{ fontSize: '8.5px', color: t.textSecondary, textAlign: 'center', marginTop: '6px' }}>
                       Answers are based only on your uploaded document.
                     </div>
                   </div>
@@ -1168,13 +1226,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
       {/* ═══════════════════════════════════════════════════════════
           SECTION 2: FEATURES SHOWCASE
           ═══════════════════════════════════════════════════════════ */}
-      <section id="features" style={{
+      <section id="features" className="landing-section" style={{
         position: 'relative',
         zIndex: 10,
         maxWidth: '1440px',
         margin: '0 auto',
         padding: '80px 48px',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
+        borderTop: `1px solid ${t.sectionBorder}`,
       }}>
         <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 56px' }}>
           <div style={{
@@ -1183,103 +1241,94 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
             gap: '6px',
             padding: '5px 12px',
             borderRadius: '999px',
-            background: 'rgba(56,189,248,0.08)',
-            border: '1px solid rgba(56,189,248,0.25)',
-            color: '#38bdf8',
+            background: t.pillBg,
+            border: `1px solid ${t.pillBorder}`,
+            color: t.pillText,
             fontSize: '11px',
             fontWeight: 700,
             letterSpacing: '0.8px',
             textTransform: 'uppercase',
             marginBottom: '16px',
           }}>
-            <Sparkles size={12} /> Powerful AI Features
+            <Sparkles size={12} color={t.pillText} /> Powerful AI Features
           </div>
-          <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 42px)', fontWeight: 800, letterSpacing: '-1px', color: 'white', margin: '0 0 16px' }}>
-            Everything you need to talk to your documents
+          <h2 style={{ fontSize: 'clamp(26px, 3vw, 36px)', fontWeight: 800, letterSpacing: '-0.8px', color: t.textPrimary, margin: '0 0 12px' }}>
+            Built for working with complex documents
           </h2>
-          <p style={{ fontSize: '15px', color: '#94a3b8', lineHeight: 1.6, margin: 0 }}>
-            Powered by Google Gemini 1.5 Flash and high-dimensional semantic text embeddings.
+          <p style={{ fontSize: '15px', color: t.textSecondary, lineHeight: 1.6, margin: 0 }}>
+            Powered by retrieval-augmented generation to deliver verified responses with full source transparency.
           </p>
         </div>
 
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '24px',
+          gap: '20px',
         }}>
           {[
             {
-              icon: Cpu,
-              title: 'Gemini Vector RAG',
-              desc: 'Chunks your PDFs into vector representations with cosine similarity search for exact match retrieval.',
-              color: '#38bdf8',
+              icon: UploadCloud,
+              title: 'PDF Upload & Processing',
+              desc: 'Extract text, partition pages, and chunk documents automatically upon upload.',
+              color: t.brandAccent,
             },
             {
-              icon: Mic,
-              title: 'Voice Input & Audio TTS',
-              desc: 'Speak naturally to your documents and listen to AI answers in audio mode with text-to-speech.',
-              color: '#60a5fa',
+              icon: Cpu,
+              title: 'Semantic Vector Search',
+              desc: 'Indexes chunks with high-dimensional vector embeddings for precise context retrieval.',
+              color: '#d97706',
+            },
+            {
+              icon: MessageSquare,
+              title: 'AI Document Chat',
+              desc: 'Ask questions in natural language and receive contextually aware answers generated by Google Gemini.',
+              color: '#b45309',
             },
             {
               icon: FileText,
               title: 'Page & Source Citations',
-              desc: 'Every AI answer is verified with exact page numbers and matched chunk citations from your PDF.',
-              color: '#a78bfa',
+              desc: 'Every AI response highlights exact page numbers and snippet excerpts used to form the answer.',
+              color: '#78716c',
             },
             {
-              icon: Shield,
-              title: '1-Click Google OAuth',
-              desc: 'Sign in effortlessly using your Google account with encrypted JWT session management.',
-              color: '#34d399',
+              icon: Mic,
+              title: 'Voice Input & Text-to-Speech',
+              desc: 'Speak questions aloud via speech recognition and listen to generated AI responses.',
+              color: '#d97706',
             },
             {
               icon: Layers,
               title: 'Multi-Document Workspace',
-              desc: 'Upload multiple PDFs, switch between research papers and contracts, and manage them cleanly.',
-              color: '#f472b6',
-            },
-            {
-              icon: Lock,
-              title: 'Enterprise-Grade Security',
-              desc: 'Your files and vector indices are isolated and protected with strict authentication & encryption.',
-              color: '#fbbf24',
+              desc: 'Organize, search, filter, and manage multiple PDFs in a clean dashboard interface.',
+              color: '#b45309',
             },
           ].map(({ icon: Icon, title, desc, color }) => (
             <div
               key={title}
               style={{
-                padding: '28px',
-                borderRadius: '18px',
-                background: 'rgba(255,255,255,0.02)',
-                border: '1px solid rgba(255,255,255,0.06)',
-                transition: 'all .25s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-                e.currentTarget.style.borderColor = 'rgba(56,189,248,0.3)';
-                e.currentTarget.style.transform = 'translateY(-3px)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
-                e.currentTarget.style.transform = '';
+                padding: '24px',
+                borderRadius: '16px',
+                background: t.cardBg,
+                border: `1px solid ${t.cardBorder}`,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.02)',
+                transition: 'all .2s ease',
               }}
             >
               <div style={{
-                width: '42px',
-                height: '42px',
-                borderRadius: '12px',
-                background: `${color}15`,
-                border: `1px solid ${color}35`,
+                width: '38px',
+                height: '38px',
+                borderRadius: '10px',
+                background: '#fef3c7',
+                border: '1px solid #fde68a',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginBottom: '18px',
+                marginBottom: '16px',
               }}>
-                <Icon size={20} color={color} />
+                <Icon size={18} color="#b45309" />
               </div>
-              <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'white', margin: '0 0 10px' }}>{title}</h3>
-              <p style={{ fontSize: '14px', color: '#94a3b8', lineHeight: 1.6, margin: 0 }}>{desc}</p>
+              <h3 style={{ fontSize: '16px', fontWeight: 700, color: t.textPrimary, margin: '0 0 8px' }}>{title}</h3>
+              <p style={{ fontSize: '13.5px', color: t.textSecondary, lineHeight: 1.55, margin: 0 }}>{desc}</p>
             </div>
           ))}
         </div>
@@ -1288,7 +1337,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
       {/* ═══════════════════════════════════════════════════════════
           SECTION 3: SECURITY
           ═══════════════════════════════════════════════════════════ */}
-      <section id="security" style={{
+      <section id="security" className="landing-section" style={{
         position: 'relative',
         zIndex: 10,
         maxWidth: '1440px',
@@ -1298,21 +1347,22 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
         <div style={{
           padding: '40px',
           borderRadius: '24px',
-          background: 'linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(56,189,248,0.04) 100%)',
-          border: '1px solid rgba(56,189,248,0.2)',
+          background: t.cardBg,
+          border: `1px solid ${t.cardBorder}`,
+          boxShadow: '0 10px 30px rgba(0,0,0,0.04)',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '32px',
           alignItems: 'center',
         }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#38bdf8', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>
-              <Shield size={16} /> Privacy-First Architecture
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: t.brandAccent, fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>
+              <Shield size={16} color={t.brandAccent} /> Privacy-First Architecture
             </div>
-            <h2 style={{ fontSize: '28px', fontWeight: 800, color: 'white', margin: '0 0 14px' }}>
+            <h2 style={{ fontSize: '28px', fontWeight: 800, color: t.textPrimary, margin: '0 0 14px' }}>
               Your documents stay private, encrypted & secure
             </h2>
-            <p style={{ fontSize: '14.5px', color: '#94a3b8', lineHeight: 1.6, margin: '0 0 24px' }}>
+            <p style={{ fontSize: '14.5px', color: t.textSecondary, lineHeight: 1.6, margin: '0 0 24px' }}>
               We never train public AI models on your private documents. All embeddings and chats belong solely to your user account.
             </p>
             <button
@@ -1320,13 +1370,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               style={{
                 padding: '12px 24px',
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+                background: t.btnPrimaryBg,
                 border: 'none',
-                color: 'white',
+                color: '#ffffff',
                 fontSize: '14px',
                 fontWeight: 700,
                 cursor: 'pointer',
-                boxShadow: '0 4px 16px rgba(37,99,235,0.3)',
+                boxShadow: t.btnPrimaryShadow,
               }}
             >
               Start Chatting Securely →
@@ -1340,8 +1390,8 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               'Instant document deletion with all vector traces removed',
               'JWT authenticated session management',
             ].map(item => (
-              <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '14px', color: 'rgba(255,255,255,0.85)' }}>
-                <CheckCircle2 size={18} color="#34d399" /> {item}
+              <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '14px', color: t.textPrimary }}>
+                <CheckCircle2 size={18} color="#10b981" /> {item}
               </div>
             ))}
           </div>
@@ -1351,20 +1401,20 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
       {/* ═══════════════════════════════════════════════════════════
           SECTION 4: PRICING
           ═══════════════════════════════════════════════════════════ */}
-      <section id="pricing" style={{
+      <section id="pricing" className="landing-section" style={{
         position: 'relative',
         zIndex: 10,
         maxWidth: '1440px',
         margin: '0 auto',
         padding: '60px 48px 100px',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
+        borderTop: `1px solid ${t.sectionBorder}`,
       }}>
         <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 48px' }}>
-          <h2 style={{ fontSize: '32px', fontWeight: 800, color: 'white', margin: '0 0 12px' }}>
-            Simple, Transparent Pricing
+          <h2 style={{ fontSize: '30px', fontWeight: 800, color: t.textPrimary, margin: '0 0 10px' }}>
+            Free During Public Beta
           </h2>
-          <p style={{ fontSize: '15px', color: '#94a3b8', margin: 0 }}>
-            Start chatting with your PDFs right away. No hidden fees.
+          <p style={{ fontSize: '15px', color: t.textSecondary, margin: 0 }}>
+            DocMind AI is currently free while in public beta. No credit card required.
           </p>
         </div>
 
@@ -1379,21 +1429,22 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
           <div style={{
             padding: '36px',
             borderRadius: '20px',
-            background: 'rgba(255,255,255,0.02)',
-            border: '1px solid rgba(255,255,255,0.08)',
+            background: t.cardBg,
+            border: `1px solid ${t.cardBorder}`,
+            boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
           }}>
             <div>
-              <div style={{ fontSize: '18px', fontWeight: 700, color: 'white', marginBottom: '6px' }}>Free Plan</div>
-              <div style={{ fontSize: '13px', color: '#94a3b8', marginBottom: '20px' }}>Perfect for students & individuals</div>
-              <div style={{ fontSize: '38px', fontWeight: 900, color: 'white', marginBottom: '24px' }}>$0 <span style={{ fontSize: '14px', fontWeight: 500, color: '#94a3b8' }}>/ forever</span></div>
+              <div style={{ fontSize: '18px', fontWeight: 700, color: t.textPrimary, marginBottom: '6px' }}>Free Plan</div>
+              <div style={{ fontSize: '13px', color: t.textSecondary, marginBottom: '20px' }}>Perfect for students & individuals</div>
+              <div style={{ fontSize: '38px', fontWeight: 900, color: t.textPrimary, marginBottom: '24px' }}>$0 <span style={{ fontSize: '14px', fontWeight: 500, color: t.textSecondary }}>/ forever</span></div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
-                {['Unlimited document chats', '10MB PDF upload limit', 'Google Gemini 1.5 Flash responses', 'Voice input & Text-to-Speech', 'Exact page citations'].map(t => (
-                  <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px', color: 'rgba(255,255,255,0.85)' }}>
-                    <Check size={16} color="#38bdf8" /> {t}
+                {['Unlimited document chats', '10MB PDF upload limit', 'Google Gemini 1.5 Flash responses', 'Voice input & Text-to-Speech', 'Exact page citations'].map(itemText => (
+                  <div key={itemText} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px', color: t.textPrimary }}>
+                    <Check size={16} color={t.brandAccent} /> {itemText}
                   </div>
                 ))}
               </div>
@@ -1405,9 +1456,9 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 width: '100%',
                 padding: '13px',
                 borderRadius: '12px',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.15)',
-                color: 'white',
+                background: t.btnSecondaryBg,
+                border: `1px solid ${t.btnSecondaryBorder}`,
+                color: t.btnSecondaryText,
                 fontSize: '14px',
                 fontWeight: 700,
                 cursor: 'pointer',
@@ -1421,9 +1472,9 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
           <div style={{
             padding: '36px',
             borderRadius: '20px',
-            background: 'linear-gradient(135deg, rgba(37,99,235,0.12) 0%, rgba(56,189,248,0.06) 100%)',
-            border: '1.5px solid rgba(56,189,248,0.4)',
-            boxShadow: '0 12px 36px rgba(37,99,235,0.2)',
+            background: t.cardBg,
+            border: `1.5px solid ${t.pillBorder}`,
+            boxShadow: '0 12px 36px rgba(217,119,6,0.12)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -1435,8 +1486,8 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               right: '20px',
               padding: '4px 10px',
               borderRadius: '999px',
-              background: '#2563eb',
-              color: 'white',
+              background: t.brandAccent,
+              color: '#ffffff',
               fontSize: '10px',
               fontWeight: 800,
               textTransform: 'uppercase',
@@ -1445,14 +1496,14 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
             </div>
 
             <div>
-              <div style={{ fontSize: '18px', fontWeight: 700, color: 'white', marginBottom: '6px' }}>Pro AI</div>
-              <div style={{ fontSize: '13px', color: '#94a3b8', marginBottom: '20px' }}>For researchers & power users</div>
-              <div style={{ fontSize: '38px', fontWeight: 900, color: 'white', marginBottom: '24px' }}>Free <span style={{ fontSize: '14px', fontWeight: 500, color: '#94a3b8' }}>during Public Beta</span></div>
+              <div style={{ fontSize: '18px', fontWeight: 700, color: t.textPrimary, marginBottom: '6px' }}>Pro AI</div>
+              <div style={{ fontSize: '13px', color: t.textSecondary, marginBottom: '20px' }}>For researchers & power users</div>
+              <div style={{ fontSize: '38px', fontWeight: 900, color: t.textPrimary, marginBottom: '24px' }}>Free <span style={{ fontSize: '14px', fontWeight: 500, color: t.textSecondary }}>during Public Beta</span></div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
-                {['All Free Plan features', 'Highest priority Gemini inference', 'Unlimited PDF uploads', 'Full Chat History export', 'Multi-file parallel index'].map(t => (
-                  <div key={t} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px', color: 'rgba(255,255,255,0.9)' }}>
-                    <Check size={16} color="#38bdf8" /> {t}
+                {['All Free Plan features', 'Highest priority Gemini inference', 'Unlimited PDF uploads', 'Full Chat History export', 'Multi-file parallel index'].map(itemText => (
+                  <div key={itemText} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px', color: t.textPrimary }}>
+                    <Check size={16} color={t.brandAccent} /> {itemText}
                   </div>
                 ))}
               </div>
@@ -1464,13 +1515,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 width: '100%',
                 padding: '13px',
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+                background: t.btnPrimaryBg,
                 border: 'none',
-                color: 'white',
+                color: '#ffffff',
                 fontSize: '14px',
                 fontWeight: 700,
                 cursor: 'pointer',
-                boxShadow: '0 6px 20px rgba(37,99,235,0.35)',
+                boxShadow: t.btnPrimaryShadow,
               }}
             >
               Unlock Pro Access →
@@ -1483,21 +1534,21 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
           FOOTER
           ═══════════════════════════════════════════════════════════ */}
       <footer style={{
-        borderTop: '1px solid rgba(255,255,255,0.06)',
+        borderTop: `1px solid ${t.sectionBorder}`,
         padding: '40px 48px',
         maxWidth: '1440px',
         margin: '0 auto',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        color: 'rgba(255,255,255,0.4)',
+        color: t.footerText,
         fontSize: '13px',
         flexWrap: 'wrap',
         gap: '16px',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <BrainLogo size={20} />
-          <span style={{ color: 'white', fontWeight: 700 }}>DocMind AI</span>
+          <span style={{ color: t.brandText, fontWeight: 700 }}>DocMind AI</span>
           <span>© 2026. Built with Google Gemini & RAG.</span>
         </div>
 
@@ -1505,7 +1556,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
           <span onClick={() => scrollToSection('features')} style={{ cursor: 'pointer' }}>Features</span>
           <span onClick={() => scrollToSection('security')} style={{ cursor: 'pointer' }}>Security</span>
           <span onClick={() => scrollToSection('pricing')} style={{ cursor: 'pointer' }}>Pricing</span>
-          <span onClick={handleCTA} style={{ color: '#818cf8', fontWeight: 600, cursor: 'pointer' }}>Launch App →</span>
+          <span onClick={handleCTA} style={{ color: t.brandAccent, fontWeight: 600, cursor: 'pointer' }}>Launch App →</span>
         </div>
       </footer>
 
@@ -1519,8 +1570,8 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
             position: 'fixed',
             inset: 0,
             zIndex: 100,
-            background: 'rgba(0,0,0,0.8)',
-            backdropFilter: 'blur(12px)',
+            background: 'rgba(28,25,23,0.4)',
+            backdropFilter: 'blur(8px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -1533,10 +1584,10 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
               width: '100%',
               maxWidth: '560px',
               borderRadius: '24px',
-              background: '#0c0f18',
-              border: '1px solid rgba(255,255,255,0.12)',
+              background: '#fbf9f4',
+              border: '1px solid #e7e0d3',
               padding: '32px',
-              boxShadow: '0 24px 60px rgba(0,0,0,0.8)',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.12)',
               position: 'relative',
             }}
           >
@@ -1546,9 +1597,9 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 position: 'absolute',
                 top: '20px',
                 right: '20px',
-                background: 'rgba(255,255,255,0.06)',
-                border: 'none',
-                color: 'white',
+                background: '#f4f0e6',
+                border: '1px solid #e7e0d3',
+                color: '#1c1917',
                 borderRadius: '50%',
                 width: '32px',
                 height: '32px',
@@ -1563,7 +1614,7 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
               <BrainLogo size={28} />
-              <div style={{ fontSize: '18px', fontWeight: 800, color: 'white' }}>How DocMind AI Works</div>
+              <div style={{ fontSize: '18px', fontWeight: 800, color: '#1c1917' }}>How DocMind AI Works</div>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', margin: '24px 0' }}>
@@ -1577,8 +1628,9 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                     width: '28px',
                     height: '28px',
                     borderRadius: '8px',
-                    background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
-                    color: 'white',
+                    background: '#fef3c7',
+                    border: '1px solid #fde68a',
+                    color: '#b45309',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -1589,8 +1641,8 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                     {step}
                   </div>
                   <div>
-                    <div style={{ fontSize: '14px', fontWeight: 700, color: 'white' }}>{title}</div>
-                    <div style={{ fontSize: '12.5px', color: 'rgba(255,255,255,0.5)', marginTop: '2px' }}>{desc}</div>
+                    <div style={{ fontSize: '14px', fontWeight: 700, color: '#1c1917' }}>{title}</div>
+                    <div style={{ fontSize: '12.5px', color: '#57534e', marginTop: '2px' }}>{desc}</div>
                   </div>
                 </div>
               ))}
@@ -1605,12 +1657,13 @@ export default function LandingPage({ defaultAuthOpen = false, defaultAuthMode =
                 width: '100%',
                 padding: '14px',
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                background: 'linear-gradient(135deg, #d97706, #b45309)',
                 border: 'none',
                 color: 'white',
                 fontSize: '14.5px',
                 fontWeight: 700,
                 cursor: 'pointer',
+                boxShadow: '0 4px 16px rgba(217,119,6,0.3)',
               }}
             >
               Try It Now For Free →

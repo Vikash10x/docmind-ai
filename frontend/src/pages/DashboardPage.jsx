@@ -62,19 +62,19 @@ const DashboardPage = () => {
       label: 'Total Documents',
       value: documents.length,
       icon: FileText,
-      iconColor: '#a78bfa',
-      iconBg: 'rgba(139,92,246,0.12)',
-      iconBorder: 'rgba(139,92,246,0.2)',
-      accent: '#7c3aed',
+      iconColor: '#b45309',
+      iconBg: '#fef3c7',
+      iconBorder: '#fde68a',
+      accent: '#d97706',
       description: 'All uploaded PDFs',
     },
     {
       label: 'Ready to Chat',
       value: completedCount,
       icon: CheckCircle2,
-      iconColor: '#34d399',
-      iconBg: 'rgba(52,211,153,0.1)',
-      iconBorder: 'rgba(52,211,153,0.18)',
+      iconColor: '#047857',
+      iconBg: '#d1fae5',
+      iconBorder: '#a7f3d0',
       accent: '#10b981',
       description: 'Processed & indexed',
     },
@@ -82,9 +82,9 @@ const DashboardPage = () => {
       label: 'Processing',
       value: processingCount,
       icon: Loader,
-      iconColor: '#fbbf24',
-      iconBg: 'rgba(251,191,36,0.1)',
-      iconBorder: 'rgba(251,191,36,0.18)',
+      iconColor: '#c2410c',
+      iconBg: '#ffedd5',
+      iconBorder: '#fed7aa',
       accent: '#f59e0b',
       description: 'Building embeddings',
       spinning: processingCount > 0,
@@ -108,14 +108,13 @@ const DashboardPage = () => {
 
   return (
     <div
-      className="min-h-screen"
-      style={{ background: 'linear-gradient(160deg, #07070e 0%, #06060a 60%, #09060f 100%)' }}
+      className="min-h-screen bg-[#fbf9f4] text-[#1c1917]"
     >
       {/* Ambient glow */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139,92,246,0.08) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(217,119,6,0.06) 0%, transparent 60%)',
           zIndex: 0,
         }}
       />
@@ -126,15 +125,15 @@ const DashboardPage = () => {
         {/* ── Welcome Header ── */}
         <div className="mb-10 flex items-end justify-between flex-wrap gap-4">
           <div>
-            <p className="text-xs font-semibold text-violet-400 uppercase tracking-widest mb-2 flex items-center gap-1.5">
+            <p className="text-xs font-semibold text-amber-700 uppercase tracking-widest mb-2 flex items-center gap-1.5">
               <TrendingUp size={11} />
               {timeOfDay()}
             </p>
-            <h1 className="text-3xl font-bold text-white tracking-tight">
+            <h1 className="text-3xl font-bold text-[#1c1917] tracking-tight">
               {user?.name?.split(' ')[0]}{' '}
               <span className="animate-float inline-block">👋</span>
             </h1>
-            <p className="text-zinc-500 mt-1.5 text-sm">
+            <p className="text-stone-600 mt-1.5 text-sm">
               Upload PDFs and have intelligent conversations with your documents.
             </p>
           </div>
@@ -155,12 +154,12 @@ const DashboardPage = () => {
               key={label}
               className="relative rounded-2xl p-px overflow-hidden"
               style={{
-                background: `linear-gradient(135deg, ${accent}22 0%, rgba(255,255,255,0.05) 100%)`,
+                background: `linear-gradient(135deg, ${accent}22 0%, #e7e0d3 100%)`,
               }}
             >
               <div
                 className="rounded-2xl px-5 py-4 flex items-center gap-4"
-                style={{ background: 'rgba(10,10,16,0.95)' }}
+                style={{ background: '#ffffff' }}
               >
                 <div
                   className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
@@ -173,9 +172,9 @@ const DashboardPage = () => {
                   />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-white leading-none">{value}</p>
-                  <p className="text-xs font-semibold text-zinc-300 mt-1">{label}</p>
-                  <p className="text-[10px] text-zinc-600 mt-0.5">{description}</p>
+                  <p className="text-2xl font-bold text-[#1c1917] leading-none">{value}</p>
+                  <p className="text-xs font-semibold text-stone-700 mt-1">{label}</p>
+                  <p className="text-[10px] text-stone-500 mt-0.5">{description}</p>
                 </div>
               </div>
             </div>
@@ -186,11 +185,11 @@ const DashboardPage = () => {
         {(showUpload || documents.length === 0) && (
           <div className="mb-10 animate-slide-up">
             <div className="flex items-center gap-2 mb-4">
-              <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.06)' }} />
-              <span className="text-xs font-semibold text-zinc-500 uppercase tracking-widest px-3">
+              <div className="flex-1 h-px" style={{ background: '#e7e0d3' }} />
+              <span className="text-xs font-semibold text-stone-500 uppercase tracking-widest px-3">
                 Upload Document
               </span>
-              <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.06)' }} />
+              <div className="flex-1 h-px" style={{ background: '#e7e0d3' }} />
             </div>
             <UploadZone onUploadComplete={handleUploadComplete} />
           </div>
@@ -200,11 +199,11 @@ const DashboardPage = () => {
         <div>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-3">
-              <h2 className="text-base font-bold text-zinc-200 tracking-tight">Your Documents</h2>
+              <h2 className="text-base font-bold text-[#1c1917] tracking-tight">Your Documents</h2>
               {documents.length > 0 && (
                 <div
-                  className="px-2 py-0.5 rounded-full text-[11px] font-bold"
-                  style={{ background: 'rgba(139,92,246,0.15)', color: '#a78bfa', border: '1px solid rgba(139,92,246,0.2)' }}
+                  className="px-2.5 py-0.5 rounded-full text-[11px] font-bold"
+                  style={{ background: '#fef3c7', color: '#b45309', border: '1px solid #fde68a' }}
                 >
                   {filteredDocuments.length} of {documents.length}
                 </div>
@@ -216,18 +215,18 @@ const DashboardPage = () => {
               <div className="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
                 {/* Search input */}
                 <div className="relative flex-1 sm:w-64">
-                  <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+                  <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" />
                   <input
                     type="text"
                     placeholder="Search documents..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-9 pr-3 py-1.5 rounded-xl text-xs bg-white/[0.04] border border-white/[0.08] text-white placeholder-zinc-500 focus:outline-none focus:border-violet-500/50 transition-colors"
+                    className="w-full pl-9 pr-3 py-1.5 rounded-xl text-xs bg-white border border-[#e7e0d3] text-[#1c1917] placeholder-stone-400 focus:outline-none focus:border-amber-600 transition-colors"
                   />
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery('')}
-                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-zinc-500 hover:text-zinc-300"
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-stone-500 hover:text-stone-800"
                     >
                       ✕
                     </button>
@@ -235,15 +234,15 @@ const DashboardPage = () => {
                 </div>
 
                 {/* Filter tabs */}
-                <div className="flex rounded-xl p-1 bg-white/[0.03] border border-white/[0.06] text-xs">
+                <div className="flex rounded-xl p-1 bg-[#ede8dd] border border-[#e7e0d3] text-xs">
                   {['all', 'completed', 'processing'].map((st) => (
                     <button
                       key={st}
                       onClick={() => setStatusFilter(st)}
-                      className={`px-2.5 py-1 rounded-lg font-medium transition-colors capitalize text-[11px] ${
+                      className={`px-2.5 py-1 rounded-lg font-semibold transition-colors capitalize text-[11px] ${
                         statusFilter === st
-                          ? 'bg-violet-600 text-white shadow-sm'
-                          : 'text-zinc-500 hover:text-zinc-300'
+                          ? 'bg-amber-600 text-white shadow-sm'
+                          : 'text-stone-600 hover:text-stone-900'
                       }`}
                     >
                       {st === 'completed' ? 'Ready' : st}
@@ -254,8 +253,8 @@ const DashboardPage = () => {
                 <button
                   onClick={() => fetchDocuments()}
                   disabled={refreshing}
-                  className="flex items-center gap-1.5 text-xs font-medium text-zinc-500 hover:text-zinc-300 transition-colors px-3 py-1.5 rounded-xl"
-                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+                  className="flex items-center gap-1.5 text-xs font-semibold text-stone-600 hover:text-stone-900 transition-colors px-3 py-1.5 rounded-xl"
+                  style={{ background: '#ffffff', border: '1px solid #e7e0d3' }}
                 >
                   <RefreshCw size={12} className={refreshing ? 'animate-spin' : ''} />
                 </button>
@@ -265,8 +264,8 @@ const DashboardPage = () => {
 
           {error && (
             <div
-              className="rounded-xl p-4 text-sm text-red-400 mb-4 flex items-center gap-2"
-              style={{ background: 'rgba(239,68,68,0.07)', border: '1px solid rgba(239,68,68,0.15)' }}
+              className="rounded-xl p-4 text-sm text-red-700 mb-4 flex items-center gap-2"
+              style={{ background: '#fee2e2', border: '1px solid #fca5a5' }}
             >
               {error}
             </div>
@@ -281,30 +280,30 @@ const DashboardPage = () => {
               <div
                 className="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 animate-float"
                 style={{
-                  background: 'rgba(139,92,246,0.08)',
-                  border: '1px solid rgba(139,92,246,0.15)',
-                  boxShadow: '0 0 40px rgba(139,92,246,0.08)',
+                  background: '#fef3c7',
+                  border: '1px solid #fde68a',
+                  boxShadow: '0 4px 20px rgba(217,119,6,0.15)',
                 }}
               >
-                <Inbox size={36} className="text-zinc-600" />
+                <Inbox size={36} className="text-amber-700" />
               </div>
-              <h3 className="text-zinc-300 font-semibold text-lg mb-2">No documents yet</h3>
-              <p className="text-zinc-600 text-sm max-w-xs leading-relaxed">
+              <h3 className="text-[#1c1917] font-bold text-lg mb-2">No documents yet</h3>
+              <p className="text-stone-600 text-sm max-w-xs leading-relaxed">
                 Upload your first PDF to get started. We'll process and index it for intelligent Q&A.
               </p>
             </div>
           ) : filteredDocuments.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center animate-fade-in">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-3 bg-white/[0.03] border border-white/[0.06]">
-                <Search size={22} className="text-zinc-600" />
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-3 bg-white border border-[#e7e0d3]">
+                <Search size={22} className="text-stone-500" />
               </div>
-              <h4 className="text-zinc-300 font-medium text-sm mb-1">No matching documents</h4>
-              <p className="text-zinc-600 text-xs mb-4">
+              <h4 className="text-[#1c1917] font-semibold text-sm mb-1">No matching documents</h4>
+              <p className="text-stone-600 text-xs mb-4">
                 No documents match "{searchQuery}" with filter "{statusFilter}".
               </p>
               <button
                 onClick={() => { setSearchQuery(''); setStatusFilter('all'); }}
-                className="text-xs text-violet-400 hover:underline font-semibold"
+                className="text-xs text-amber-700 hover:underline font-bold"
               >
                 Clear filters
               </button>

@@ -32,10 +32,10 @@ function AuthInput({ id, name, type = 'text', placeholder, value, onChange, righ
         style={{
           width: '100%', padding: `11px ${rightEl ? '42px' : '14px'} 11px 14px`,
           borderRadius: '12px', fontSize: '13.5px', fontFamily: 'inherit',
-          background: focused ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.04)',
-          border: focused ? '1.5px solid rgba(99,102,241,0.6)' : '1.5px solid rgba(255,255,255,0.09)',
-          color: 'white', outline: 'none',
-          boxShadow: focused ? '0 0 0 3px rgba(99,102,241,0.15)' : 'none',
+          background: focused ? 'rgba(217,119,6,0.05)' : '#ffffff',
+          border: focused ? '1.5px solid #d97706' : '1.5px solid #e7e0d3',
+          color: '#1c1917', outline: 'none',
+          boxShadow: focused ? '0 0 0 3px rgba(217,119,6,0.15)' : 'none',
           transition: 'all .2s',
         }}
       />
@@ -165,9 +165,9 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
         width: '100%',
         padding: '11px 16px',
         borderRadius: '12px',
-        background: 'rgba(255,255,255,0.05)',
-        border: '1px solid rgba(255,255,255,0.12)',
-        color: '#ffffff',
+        background: '#ffffff',
+        border: '1px solid #e7e0d3',
+        color: '#1c1917',
         fontSize: '13.5px',
         fontWeight: 600,
         fontFamily: 'inherit',
@@ -177,18 +177,18 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
         gap: '12px',
         cursor: googleLoading ? 'not-allowed' : 'pointer',
         transition: 'all .2s ease',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06)',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.03)',
       }}
       onMouseEnter={e => {
         if (!googleLoading) {
-          e.currentTarget.style.background = 'rgba(255,255,255,0.09)';
-          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.22)';
+          e.currentTarget.style.background = '#f4f0e6';
+          e.currentTarget.style.borderColor = '#d6cebf';
           e.currentTarget.style.transform = 'translateY(-1px)';
         }
       }}
       onMouseLeave={e => {
-        e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
-        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
+        e.currentTarget.style.background = '#ffffff';
+        e.currentTarget.style.borderColor = '#e7e0d3';
         e.currentTarget.style.transform = '';
       }}
     >
@@ -231,7 +231,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
         position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        background: 'rgba(5,7,12,0.65)',
+        background: 'rgba(28,25,23,0.45)',
         backdropFilter: 'blur(10px)',
         WebkitBackdropFilter: 'blur(10px)',
         display: 'flex',
@@ -248,22 +248,22 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
           maxWidth: '430px',
           borderRadius: '26px',
           padding: '1.5px',
-          background: 'linear-gradient(135deg, #6366f1, #c084fc, #38bdf8, #6366f1)',
-          backgroundSize: '300% 300%',
-          boxShadow: '0 24px 64px rgba(0,0,0,0.8), 0 0 50px rgba(99,102,241,0.25)',
+          background: 'linear-gradient(135deg, #fcd34d, #d97706, #b45309)',
+          boxShadow: '0 20px 50px rgba(0,0,0,0.15), 0 0 30px rgba(217,119,6,0.12)',
           position: 'relative',
         }}
       >
         <div style={{
           borderRadius: '25px',
-          background: '#090d16',
+          background: '#fbf9f4',
           overflow: 'hidden',
           padding: '28px 28px 24px',
           position: 'relative',
+          border: '1px solid #e7e0d3',
         }}>
           {/* Mode switch tabs */}
           {mode !== 'forgot' ? (
-            <div style={{ display: 'flex', borderRadius: '13px', padding: '4px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', marginBottom: '22px' }}>
+            <div style={{ display: 'flex', borderRadius: '13px', padding: '4px', background: '#ede8dd', border: '1px solid #e7e0d3', marginBottom: '22px' }}>
               {[
                 { key: 'login', label: 'Sign In', icon: LogIn },
                 { key: 'signup', label: 'Sign Up', icon: UserPlus },
@@ -278,9 +278,9 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
                       flex: 1, padding: '9px 8px', borderRadius: '10px', border: 'none', cursor: 'pointer',
                       fontSize: '13px', fontWeight: 700, fontFamily: 'inherit',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
-                      background: active ? 'linear-gradient(135deg, #6366f1, #4f46e5)' : 'transparent',
-                      color: active ? 'white' : 'rgba(255,255,255,0.4)',
-                      boxShadow: active ? '0 4px 14px rgba(79,70,229,0.4)' : 'none',
+                      background: active ? 'linear-gradient(135deg, #d97706, #b45309)' : 'transparent',
+                      color: active ? 'white' : '#57534e',
+                      boxShadow: active ? '0 4px 14px rgba(217,119,6,0.3)' : 'none',
                       transition: 'all .2s ease',
                     }}
                   >
@@ -295,8 +295,8 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
               onClick={() => setMode('login')}
               style={{
                 display: 'flex', alignItems: 'center', gap: '6px',
-                background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
-                borderRadius: '10px', padding: '6px 12px', color: 'rgba(255,255,255,0.7)',
+                background: '#ffffff', border: '1px solid #e7e0d3',
+                borderRadius: '10px', padding: '6px 12px', color: '#57534e',
                 fontSize: '12px', fontWeight: 600, cursor: 'pointer', marginBottom: '18px',
               }}
             >
@@ -309,32 +309,32 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
             /* ─── Sign In Form ─── */
             <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
               <div style={{ textAlign: 'center', marginBottom: '2px' }}>
-                <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'white', letterSpacing: '-0.5px', margin: '0 0 4px' }}>Welcome back</h2>
-                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: 0 }}>Sign in to your DocMind AI account</p>
+                <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#1c1917', letterSpacing: '-0.5px', margin: '0 0 4px' }}>Welcome back</h2>
+                <p style={{ fontSize: '13px', color: '#57534e', margin: 0 }}>Sign in to your DocMind AI account</p>
               </div>
 
               {errL && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '9px 12px', borderRadius: '10px', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', color: '#f87171', fontSize: '12.5px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '9px 12px', borderRadius: '10px', background: '#fee2e2', border: '1px solid #fca5a5', color: '#991b1b', fontSize: '12.5px' }}>
                   <AlertCircle size={13} />{errL}
                 </div>
               )}
 
               <div>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.55)', display: 'block', marginBottom: '5px' }}>Email address</label>
+                <label style={{ fontSize: '12px', fontWeight: 600, color: '#57534e', display: 'block', marginBottom: '5px' }}>Email address</label>
                 <AuthInput id="m-email" name="email" type="email" placeholder="you@example.com" value={lf.email} onChange={e => setLf(p => ({ ...p, email: e.target.value }))} />
               </div>
 
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
-                  <label style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.55)' }}>Password</label>
-                  <button type="button" onClick={() => setMode('forgot')} style={{ background: 'none', border: 'none', color: '#818cf8', fontSize: '11.5px', cursor: 'pointer', fontWeight: 600, padding: 0 }}>
+                  <label style={{ fontSize: '12px', fontWeight: 600, color: '#57534e' }}>Password</label>
+                  <button type="button" onClick={() => setMode('forgot')} style={{ background: 'none', border: 'none', color: '#b45309', fontSize: '11.5px', cursor: 'pointer', fontWeight: 600, padding: 0 }}>
                     Forgot password?
                   </button>
                 </div>
                 <AuthInput
                   id="m-pwd" name="password" type={showPwd ? 'text' : 'password'} placeholder="••••••••" value={lf.password} onChange={e => setLf(p => ({ ...p, password: e.target.value }))}
                   rightEl={
-                    <button type="button" onClick={() => setShowPwd(p => !p)} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,0.35)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                    <button type="button" onClick={() => setShowPwd(p => !p)} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: '#78716c', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
                       {showPwd ? <EyeOff size={15} /> : <Eye size={15} />}
                     </button>
                   }
@@ -348,8 +348,8 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
                   width: '100%', padding: '12px', borderRadius: '12px', marginTop: '4px',
                   fontSize: '14px', fontWeight: 700, color: 'white', border: 'none',
                   cursor: ldL ? 'not-allowed' : 'pointer', fontFamily: 'inherit',
-                  background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-                  boxShadow: '0 6px 20px rgba(79,70,229,0.45)',
+                  background: 'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
+                  boxShadow: '0 6px 20px rgba(217,119,6,0.3)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
                 }}
               >
@@ -357,16 +357,16 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
               </button>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '2px 0' }}>
-                <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.08)' }} />
-                <span style={{ fontSize: '10.5px', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: '0.8px', fontWeight: 600 }}>or continue with</span>
-                <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.08)' }} />
+                <div style={{ flex: 1, height: '1px', background: '#e7e0d3' }} />
+                <span style={{ fontSize: '10.5px', color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.8px', fontWeight: 600 }}>or continue with</span>
+                <div style={{ flex: 1, height: '1px', background: '#e7e0d3' }} />
               </div>
 
               <GoogleButton text="Continue with Google" />
 
-              <p style={{ textAlign: 'center', fontSize: '12.5px', color: 'rgba(255,255,255,0.4)', margin: '4px 0 0' }}>
+              <p style={{ textAlign: 'center', fontSize: '12.5px', color: '#57534e', margin: '4px 0 0' }}>
                 No account?{' '}
-                <button type="button" onClick={() => setMode('signup')} style={{ background: 'none', border: 'none', color: '#818cf8', fontWeight: 700, cursor: 'pointer', fontSize: '12.5px' }}>
+                <button type="button" onClick={() => setMode('signup')} style={{ background: 'none', border: 'none', color: '#b45309', fontWeight: 700, cursor: 'pointer', fontSize: '12.5px' }}>
                   Create one free →
                 </button>
               </p>
@@ -375,44 +375,44 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
             /* ─── Sign Up Form ─── */
             <form onSubmit={handleSignup} style={{ display: 'flex', flexDirection: 'column', gap: '11px' }}>
               <div style={{ textAlign: 'center', marginBottom: '2px' }}>
-                <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'white', letterSpacing: '-0.5px', margin: '0 0 4px' }}>Create account</h2>
-                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: 0 }}>Start chatting with your documents</p>
+                <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#1c1917', letterSpacing: '-0.5px', margin: '0 0 4px' }}>Create account</h2>
+                <p style={{ fontSize: '13px', color: '#57534e', margin: 0 }}>Start chatting with your documents</p>
               </div>
 
               {errS.general && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '9px 12px', borderRadius: '10px', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', color: '#f87171', fontSize: '12.5px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '9px 12px', borderRadius: '10px', background: '#fee2e2', border: '1px solid #fca5a5', color: '#991b1b', fontSize: '12.5px' }}>
                   <AlertCircle size={13} />{errS.general}
                 </div>
               )}
 
               <div>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.55)', display: 'block', marginBottom: '4px' }}>Full name</label>
+                <label style={{ fontSize: '12px', fontWeight: 600, color: '#57534e', display: 'block', marginBottom: '4px' }}>Full name</label>
                 <AuthInput id="s-name" name="name" type="text" placeholder="Jane Doe" value={sf.name} onChange={e => { setSf(p => ({ ...p, name: e.target.value })); setErrS(p => ({ ...p, name: '' })); }} />
-                {errS.name && <p style={{ fontSize: '11px', color: '#f87171', marginTop: '3px' }}>{errS.name}</p>}
+                {errS.name && <p style={{ fontSize: '11px', color: '#dc2626', marginTop: '3px' }}>{errS.name}</p>}
               </div>
 
               <div>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.55)', display: 'block', marginBottom: '4px' }}>Email address</label>
+                <label style={{ fontSize: '12px', fontWeight: 600, color: '#57534e', display: 'block', marginBottom: '4px' }}>Email address</label>
                 <AuthInput id="s-email" name="email" type="email" placeholder="jane@example.com" value={sf.email} onChange={e => { setSf(p => ({ ...p, email: e.target.value })); setErrS(p => ({ ...p, email: '' })); }} />
-                {errS.email && <p style={{ fontSize: '11px', color: '#f87171', marginTop: '3px' }}>{errS.email}</p>}
+                {errS.email && <p style={{ fontSize: '11px', color: '#dc2626', marginTop: '3px' }}>{errS.email}</p>}
               </div>
 
               <div>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.55)', display: 'block', marginBottom: '4px' }}>Password</label>
+                <label style={{ fontSize: '12px', fontWeight: 600, color: '#57534e', display: 'block', marginBottom: '4px' }}>Password</label>
                 <AuthInput id="s-pwd" name="password" type={showPwd ? 'text' : 'password'} placeholder="Min. 6 characters" value={sf.password} onChange={e => { setSf(p => ({ ...p, password: e.target.value })); setErrS(p => ({ ...p, password: '' })); }}
                   rightEl={
-                    <button type="button" onClick={() => setShowPwd(p => !p)} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,0.35)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                    <button type="button" onClick={() => setShowPwd(p => !p)} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: '#78716c', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
                       {showPwd ? <EyeOff size={15} /> : <Eye size={15} />}
                     </button>
                   }
                 />
-                {errS.password && <p style={{ fontSize: '11px', color: '#f87171', marginTop: '3px' }}>{errS.password}</p>}
+                {errS.password && <p style={{ fontSize: '11px', color: '#dc2626', marginTop: '3px' }}>{errS.password}</p>}
               </div>
 
               <div>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.55)', display: 'block', marginBottom: '4px' }}>Confirm password</label>
+                <label style={{ fontSize: '12px', fontWeight: 600, color: '#57534e', display: 'block', marginBottom: '4px' }}>Confirm password</label>
                 <AuthInput id="s-cpwd" name="confirmPassword" type="password" placeholder="Repeat password" value={sf.confirmPassword} onChange={e => { setSf(p => ({ ...p, confirmPassword: e.target.value })); setErrS(p => ({ ...p, confirmPassword: '' })); }} />
-                {errS.confirmPassword && <p style={{ fontSize: '11px', color: '#f87171', marginTop: '3px' }}>{errS.confirmPassword}</p>}
+                {errS.confirmPassword && <p style={{ fontSize: '11px', color: '#dc2626', marginTop: '3px' }}>{errS.confirmPassword}</p>}
               </div>
 
               <button
@@ -422,8 +422,8 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
                   width: '100%', padding: '12px', borderRadius: '12px', marginTop: '4px',
                   fontSize: '14px', fontWeight: 700, color: 'white', border: 'none',
                   cursor: ldS ? 'not-allowed' : 'pointer', fontFamily: 'inherit',
-                  background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-                  boxShadow: '0 6px 20px rgba(79,70,229,0.45)',
+                  background: 'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
+                  boxShadow: '0 6px 20px rgba(217,119,6,0.3)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
                 }}
               >
@@ -431,16 +431,16 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
               </button>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '2px 0' }}>
-                <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.08)' }} />
-                <span style={{ fontSize: '10.5px', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: '0.8px', fontWeight: 600 }}>or</span>
-                <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.08)' }} />
+                <div style={{ flex: 1, height: '1px', background: '#e7e0d3' }} />
+                <span style={{ fontSize: '10.5px', color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.8px', fontWeight: 600 }}>or</span>
+                <div style={{ flex: 1, height: '1px', background: '#e7e0d3' }} />
               </div>
 
               <GoogleButton text="Sign up with Google" />
 
-              <p style={{ textAlign: 'center', fontSize: '12.5px', color: 'rgba(255,255,255,0.4)', margin: '4px 0 0' }}>
+              <p style={{ textAlign: 'center', fontSize: '12.5px', color: '#57534e', margin: '4px 0 0' }}>
                 Have an account?{' '}
-                <button type="button" onClick={() => setMode('login')} style={{ background: 'none', border: 'none', color: '#818cf8', fontWeight: 700, cursor: 'pointer', fontSize: '12.5px' }}>
+                <button type="button" onClick={() => setMode('login')} style={{ background: 'none', border: 'none', color: '#b45309', fontWeight: 700, cursor: 'pointer', fontSize: '12.5px' }}>
                   Sign in →
                 </button>
               </p>
@@ -449,26 +449,26 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
             /* ─── Forgot Password Form ─── */
             <form onSubmit={handleForgot} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div style={{ textAlign: 'center', marginBottom: '2px' }}>
-                <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'white', letterSpacing: '-0.5px', margin: '0 0 4px' }}>Forgot password?</h2>
-                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: 0, lineHeight: 1.5 }}>
+                <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#1c1917', letterSpacing: '-0.5px', margin: '0 0 4px' }}>Forgot password?</h2>
+                <p style={{ fontSize: '13px', color: '#57534e', margin: 0, lineHeight: 1.5 }}>
                   Enter your email and we'll send you a password reset link.
                 </p>
               </div>
 
               {errF && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '9px 12px', borderRadius: '10px', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', color: '#f87171', fontSize: '12.5px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '9px 12px', borderRadius: '10px', background: '#fee2e2', border: '1px solid #fca5a5', color: '#991b1b', fontSize: '12.5px' }}>
                   <AlertCircle size={13} />{errF}
                 </div>
               )}
 
               {succF && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '11px 12px', borderRadius: '10px', background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.25)', color: '#4ade80', fontSize: '12.5px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '11px 12px', borderRadius: '10px', background: '#d1fae5', border: '1px solid #a7f3d0', color: '#065f46', fontSize: '12.5px' }}>
                   <Check size={14} />{succF}
                 </div>
               )}
 
               <div>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.55)', display: 'block', marginBottom: '5px' }}>Registered Email</label>
+                <label style={{ fontSize: '12px', fontWeight: 600, color: '#57534e', display: 'block', marginBottom: '5px' }}>Registered Email</label>
                 <AuthInput id="f-email" name="email" type="email" placeholder="you@example.com" value={ffEmail} onChange={e => setFfEmail(e.target.value)} />
               </div>
 
@@ -479,8 +479,8 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
                   width: '100%', padding: '12px', borderRadius: '12px', marginTop: '4px',
                   fontSize: '14px', fontWeight: 700, color: 'white', border: 'none',
                   cursor: ldF ? 'not-allowed' : 'pointer', fontFamily: 'inherit',
-                  background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-                  boxShadow: '0 6px 20px rgba(79,70,229,0.45)',
+                  background: 'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
+                  boxShadow: '0 6px 20px rgba(217,119,6,0.3)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
                 }}
               >

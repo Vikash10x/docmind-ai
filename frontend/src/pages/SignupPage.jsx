@@ -57,7 +57,7 @@ const SignupPage = () => {
 
   const InputField = ({ id, label, name, type = 'text', placeholder, rightEl }) => (
     <div className="space-y-1.5">
-      <label htmlFor={id} className="block text-sm font-medium text-zinc-400">{label}</label>
+      <label htmlFor={id} className="block text-sm font-semibold text-stone-600">{label}</label>
       <div className="relative">
         <input
           id={id}
@@ -67,12 +67,12 @@ const SignupPage = () => {
           value={form[name]}
           onChange={handleChange}
           className="input-field"
-          style={errors[name] ? { borderColor: 'rgba(239,68,68,0.4)', '--tw-ring-color': 'rgba(239,68,68,0.2)' } : {}}
+          style={errors[name] ? { borderColor: '#fca5a5' } : {}}
         />
         {rightEl}
       </div>
       {errors[name] && (
-        <p className="text-xs flex items-center gap-1 mt-1" style={{ color: '#fca5a5' }}>
+        <p className="text-xs flex items-center gap-1 mt-1 text-red-600">
           <AlertCircle size={11} /> {errors[name]}
         </p>
       )}
@@ -81,13 +81,12 @@ const SignupPage = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center p-6 relative"
-      style={{ background: 'linear-gradient(160deg, #07070e 0%, #06060a 60%, #09060f 100%)' }}
+      className="min-h-screen flex items-center justify-center p-6 relative bg-[#fbf9f4] text-[#1c1917]"
     >
       {/* Ambient glows */}
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-        <div style={{ position: 'absolute', top: '-10%', right: '-10%', width: '50%', height: '50%', background: 'radial-gradient(ellipse, rgba(109,40,217,0.07) 0%, transparent 70%)', borderRadius: '50%' }} />
-        <div style={{ position: 'absolute', bottom: '-20%', left: '-10%', width: '40%', height: '40%', background: 'radial-gradient(ellipse, rgba(79,70,229,0.05) 0%, transparent 70%)', borderRadius: '50%' }} />
+        <div style={{ position: 'absolute', top: '-10%', right: '-10%', width: '50%', height: '50%', background: 'radial-gradient(ellipse, rgba(217,119,6,0.08) 0%, transparent 70%)', borderRadius: '50%' }} />
+        <div style={{ position: 'absolute', bottom: '-20%', left: '-10%', width: '40%', height: '40%', background: 'radial-gradient(ellipse, rgba(180,83,9,0.06) 0%, transparent 70%)', borderRadius: '50%' }} />
       </div>
 
       <div className="relative z-10 w-full max-w-4xl flex gap-8 items-start">
@@ -98,23 +97,23 @@ const SignupPage = () => {
               <div
                 className="w-10 h-10 rounded-2xl flex items-center justify-center"
                 style={{
-                  background: 'linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)',
-                  boxShadow: '0 0 20px rgba(124,58,237,0.4)',
+                  background: 'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
+                  boxShadow: '0 4px 16px rgba(217,119,6,0.3)',
                 }}
               >
                 <Sparkles size={18} className="text-white" />
               </div>
               <div>
-                <span className="text-base font-bold text-white">DocMind<span style={{ color: '#a78bfa' }}>AI</span></span>
+                <span className="text-base font-bold text-[#1c1917]">DocMind<span style={{ color: '#b45309' }}>AI</span></span>
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-white leading-snug mb-3">
+            <h2 className="text-2xl font-extrabold text-[#1c1917] leading-snug mb-3">
               Start for free,<br />
-              <span style={{ background: 'linear-gradient(135deg, #a78bfa, #7c3aed)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              <span style={{ background: 'linear-gradient(135deg, #1c1917 0%, #b45309 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 chat smarter.
               </span>
             </h2>
-            <p className="text-zinc-500 text-sm leading-relaxed">
+            <p className="text-stone-600 text-sm leading-relaxed">
               Join thousands of users who already use DocMind AI to understand their documents faster.
             </p>
           </div>
@@ -124,18 +123,18 @@ const SignupPage = () => {
               <div key={text} className="flex items-center gap-3">
                 <div
                   className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.18)' }}
+                  style={{ background: '#fef3c7', border: '1px solid #fde68a' }}
                 >
-                  <Icon size={14} className="text-violet-400" />
+                  <Icon size={14} className="text-amber-700" />
                 </div>
-                <span className="text-sm text-zinc-400">{text}</span>
+                <span className="text-sm font-medium text-stone-700">{text}</span>
               </div>
             ))}
           </div>
 
           <div className="flex items-center gap-2 mt-2">
-            <CheckCircle size={13} className="text-emerald-400" />
-            <span className="text-xs text-zinc-600">No credit card required</span>
+            <CheckCircle size={13} className="text-emerald-600" />
+            <span className="text-xs text-stone-500 font-medium">No credit card required</span>
           </div>
         </div>
 
@@ -145,31 +144,31 @@ const SignupPage = () => {
           <div className="flex items-center gap-2.5 mb-8 lg:hidden">
             <div
               className="w-10 h-10 rounded-2xl flex items-center justify-center"
-              style={{ background: 'linear-gradient(135deg, #7c3aed, #5b21b6)', boxShadow: '0 0 16px rgba(124,58,237,0.4)' }}
+              style={{ background: 'linear-gradient(135deg, #d97706, #b45309)', boxShadow: '0 4px 16px rgba(217,119,6,0.3)' }}
             >
               <Sparkles size={18} className="text-white" />
             </div>
-            <span className="text-xl font-bold text-white">DocMind<span style={{ color: '#a78bfa' }}>AI</span></span>
+            <span className="text-xl font-bold text-[#1c1917]">DocMind<span style={{ color: '#b45309' }}>AI</span></span>
           </div>
 
           <div
             className="rounded-3xl p-7"
             style={{
-              background: 'rgba(255,255,255,0.02)',
-              border: '1px solid rgba(255,255,255,0.07)',
-              backdropFilter: 'blur(20px)',
+              background: '#ffffff',
+              border: '1px solid #e7e0d3',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.04)',
             }}
           >
             <div className="mb-7">
-              <h1 className="text-2xl font-bold text-white mb-1.5">Create your account</h1>
-              <p className="text-zinc-500 text-sm">Start chatting with your documents today.</p>
+              <h1 className="text-2xl font-bold text-[#1c1917] mb-1.5">Create your account</h1>
+              <p className="text-stone-600 text-sm">Start chatting with your documents today.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {errors.general && (
                 <div
                   className="flex items-center gap-2.5 p-3.5 rounded-xl text-sm animate-slide-down"
-                  style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)', color: '#fca5a5' }}
+                  style={{ background: '#fee2e2', border: '1px solid #fca5a5', color: '#991b1b' }}
                 >
                   <AlertCircle size={14} className="flex-shrink-0" />
                   {errors.general}
@@ -180,7 +179,7 @@ const SignupPage = () => {
               <InputField id="signup-email" label="Email address" name="email" type="email" placeholder="jane@example.com" />
 
               <div className="space-y-1.5">
-                <label htmlFor="signup-password" className="block text-sm font-medium text-zinc-400">Password</label>
+                <label htmlFor="signup-password" className="block text-sm font-semibold text-stone-600">Password</label>
                 <div className="relative">
                   <input
                     id="signup-password"
@@ -190,25 +189,25 @@ const SignupPage = () => {
                     value={form.password}
                     onChange={handleChange}
                     className="input-field pr-11"
-                    style={errors.password ? { borderColor: 'rgba(239,68,68,0.4)' } : {}}
+                    style={errors.password ? { borderColor: '#fca5a5' } : {}}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-500 hover:text-stone-800 transition-colors"
                   >
                     {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="text-xs flex items-center gap-1" style={{ color: '#fca5a5' }}>
+                  <p className="text-xs flex items-center gap-1 text-red-600">
                     <AlertCircle size={11} /> {errors.password}
                   </p>
                 )}
               </div>
 
               <div className="space-y-1.5">
-                <label htmlFor="signup-confirm" className="block text-sm font-medium text-zinc-400">Confirm password</label>
+                <label htmlFor="signup-confirm" className="block text-sm font-semibold text-stone-600">Confirm password</label>
                 <input
                   id="signup-confirm"
                   name="confirmPassword"
@@ -217,10 +216,10 @@ const SignupPage = () => {
                   value={form.confirmPassword}
                   onChange={handleChange}
                   className="input-field"
-                  style={errors.confirmPassword ? { borderColor: 'rgba(239,68,68,0.4)' } : {}}
+                  style={errors.confirmPassword ? { borderColor: '#fca5a5' } : {}}
                 />
                 {errors.confirmPassword && (
-                  <p className="text-xs flex items-center gap-1" style={{ color: '#fca5a5' }}>
+                  <p className="text-xs flex items-center gap-1 text-red-600">
                     <AlertCircle size={11} /> {errors.confirmPassword}
                   </p>
                 )}
@@ -238,14 +237,14 @@ const SignupPage = () => {
               </button>
             </form>
 
-            <p className="mt-5 text-center text-sm text-zinc-600">
+            <p className="mt-5 text-center text-sm text-stone-600">
               Already have an account?{' '}
               <Link
                 to="/login"
                 className="font-semibold transition-colors"
-                style={{ color: '#a78bfa' }}
-                onMouseEnter={e => { e.currentTarget.style.color = '#c4b5fd'; }}
-                onMouseLeave={e => { e.currentTarget.style.color = '#a78bfa'; }}
+                style={{ color: '#b45309' }}
+                onMouseEnter={e => { e.currentTarget.style.color = '#d97706'; }}
+                onMouseLeave={e => { e.currentTarget.style.color = '#b45309'; }}
               >
                 Sign in
               </Link>
