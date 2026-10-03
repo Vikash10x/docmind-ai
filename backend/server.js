@@ -47,6 +47,11 @@ const globalLimiter = rateLimit({
 });
 app.use(globalLimiter);
 
+// Root route for Render deployment health check
+app.get('/', (req, res) => {
+  res.json({ success: true, message: 'DocMind AI API Server Running', status: 'online' });
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'API is running', timestamp: new Date().toISOString() });
